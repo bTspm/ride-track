@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+
+development:
+  <<: *default
+  database: ride-track_development
+  pool: 5
+  username: postgres
+  password: 1234
+  host: localhost
+
+test:
+  <<: *default
+  database: ride-track_test
+  host: localhost
+  username: postgres
+  password: 1234
+
+production:
+  <<: *default
+  database: ride-track_production
+  username: ride-track
+  password: <%= ENV['RIDE-TRACK_DATABASE_PASSWORD'] %>
