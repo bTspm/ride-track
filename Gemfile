@@ -43,6 +43,7 @@ end
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
+  gem 'awesome_print'
 end
 
 
@@ -50,6 +51,12 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap', '~> 4.1.3'
+gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'execjs'
 gem 'gmaps4rails'
+
+gem 'faraday'
+gem 'webmock'
+
+gem 'btspm', path:'E:\Ruby\git_p\btspm'

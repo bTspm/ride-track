@@ -19,3 +19,5 @@
 //= require bootstrap
 //= require underscore
 //= require gmaps/google
+// = require jquery.geocomplete
+// = require ride_track
