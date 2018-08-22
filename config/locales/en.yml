@@ -30,4 +30,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  ride_track:
+    labels:
+      origin: Origin
+      destination: Destination
+      capacity: Capacity
+      cancellation: Cancellation
+      surge: Surge
+      cost_per_minute: Cost Per Minute
+      cost_per_distance: Cost Per %{distance_unit}
+
+    buttons:
+      estimate: Estimate
+      ride_now: Ride Now
+

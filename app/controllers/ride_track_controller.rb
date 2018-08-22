@@ -3,9 +3,11 @@ class RideTrackController < ApplicationController
   def home_page
   end
 
-
-  def estimate
-
+  def price_estimate
+    @price_estimates = Services::RideTrackService.new.get_price_estimates(
+        origin_details: estimate_origin_params,
+        destination_details: estimate_destination_params
+    )
   end
 
   private
@@ -18,6 +20,6 @@ class RideTrackController < ApplicationController
     params.require(:destination_details).permit ESTIMATE_PARAMS_LIST
   end
 
-  ESTIMATE_PARAMS_LIST = [:latitude, :longitude, :locality, :state, :postal_code, :country]
+  ESTIMATE_PARAMS_LIST = [:latitude, :longitude, :city, :state, :postal_code, :country]
 
 end

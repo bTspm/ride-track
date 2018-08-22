@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   namespace :ride_track do
     get :home_page
-    get :estimate
+    get :price_estimate
   end
 
   root 'ride_track#home_page'

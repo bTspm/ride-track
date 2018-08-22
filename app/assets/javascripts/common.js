@@ -1,7 +1,7 @@
 common = (function () {
     function initAjax(url, data) {
         $.ajax({
-            url: 'ride_track/estimate',
+            url: url,
             data: data,
         });
     }

@@ -29,5 +29,11 @@ module RideTrack
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.autoload_paths += Dir["#{config.root}/app"]
+    config.autoload_paths += Dir["#{config.root}/spec"]
+
+    config.autoload_paths << "#{Rails.root}/app"
+    config.autoload_paths << "#{Rails.root}/spec"
   end
 end

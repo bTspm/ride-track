@@ -51,12 +51,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'bootstrap', '~> 4.1.3'
-gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'execjs'
 gem 'gmaps4rails'
 
-gem 'faraday'
+gem 'faraday', '~>  0.9.0'
 gem 'webmock'
 
 gem 'btspm', path:'E:\Ruby\git_p\btspm'
