@@ -9,5 +9,13 @@ module Domains::RideTrack
       false
     end
 
+    def pay_in_cash?
+      false
+    end
+
+    def shared?
+      false
+    end
+
   end
 end

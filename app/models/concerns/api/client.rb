@@ -1,9 +1,13 @@
 module Api
-
   class Client
 
-    def initialize
-      @conn = Faraday.new
+    def initialize(url: nil, auth_type:, auth_options: {}, adapter: Faraday.default_adapter, headers: {})
+      @url = url
+      @auth_type = auth_type
+      @auth_options = auth_options.with_indifferent_access
+      @adapter = adapter
+      @headers = headers
+      @conn = build_connection
     end
 
     def _get(url:, cache_key:, expire_time: CACHE_IN_SECONDS)
@@ -13,11 +17,18 @@ module Api
       parse_response(response: response)
     end
 
+    def _post(url:, cache_key:, expire_time: CACHE_IN_SECONDS, body:)
+      response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
+        conn.post url, body
+      end
+      parse_response(response: response)
+    end
+
     private
 
     CACHE_IN_SECONDS = 60
 
-    attr_reader :conn
+    attr_reader :conn, :url, :auth_type, :auth_options, :adapter, :headers
 
     def parse_response(response:)
       Api::Response.new(
@@ -28,6 +39,30 @@ module Api
       )
     end
 
-  end
+    def build_connection
+      Faraday.new(url: url) do |conn|
 
+        # Headers
+        conn.headers = headers
+        case auth_type
+        when 'Bearer', 'Token', 'Basic'
+          conn.authorization auth_type, auth_options[:token]
+        when 'Basic Auth'
+          conn.basic_auth(auth_options[:username], auth_options[:password])
+        else
+          'a'
+        end
+
+        # Request
+        conn.request :json
+
+        # Response
+        conn.response :json
+        conn.response :logger
+
+        conn.adapter adapter
+      end
+    end
+
+  end
 end

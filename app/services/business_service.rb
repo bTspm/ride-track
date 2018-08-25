@@ -14,5 +14,9 @@ module Services
       engine.uber_store
     end
 
+    def lyft_storage
+      engine.lyft_store
+    end
+
   end
 end

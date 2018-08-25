@@ -3,7 +3,7 @@ module Domains::RideTrack::Uber
 
     attr_reader :display_name, :distance, :duration, :currency_code,
                 :high_estimate, :low_estimate, :estimate_range, :product_id,
-                :provider, :product
+                :product
 
     def initialize(response:)
       raise ArgumentError.new('response and provider are required') if response.blank?
@@ -16,7 +16,10 @@ module Domains::RideTrack::Uber
       @low_estimate = response[:low_estimate]
       @estimate_range = response[:estimate]
       @product_id = response[:product_id]
-      @provider = Constants::UBER
+    end
+
+    def provider
+      Constants::UBER
     end
 
     def local_name

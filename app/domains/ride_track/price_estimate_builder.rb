@@ -13,6 +13,7 @@ module RideTrack
 
     def build
       return if estimates.blank?
+      get_products
       sort_estimates_by_price
       filter_options
       self
@@ -20,17 +21,22 @@ module RideTrack
 
     private
 
+    attr_reader :products
+
     def sort_estimates_by_price
       estimates.sort_by!{|e| e.average_estimate}
     end
 
     def filter_options
-      products = estimates.map(&:product)
       @capacities = products.map(&:capacity).uniq.sort
       @distance_unit = products.map(&:distance_unit).first
       @providers = estimates.map(&:provider).uniq.sort
       @minimum_distance = estimates.map(&:distance).min
       @minimum_duration_in_minutes = estimates.map(&:duration_in_minutes).min
+    end
+
+    def get_products
+      @products = estimates.map(&:product)
     end
 
   end

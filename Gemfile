@@ -56,6 +56,5 @@ gem 'execjs'
 gem 'gmaps4rails'
 
 gem 'faraday', '~>  0.9.0'
+gem 'faraday_middleware'
 gem 'webmock'
-
-gem 'btspm', path:'E:\Ruby\git_p\btspm'

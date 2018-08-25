@@ -5,5 +5,9 @@ module Storage
       Storage::RideTrack::UberStore.new
     end
 
+    def lyft_store
+      Storage::RideTrack::LyftStore.new
+    end
+
   end
 end
