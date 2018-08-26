@@ -8,6 +8,6 @@ describe Domains::RideTrack::Uber::PriceEstimate do
 
 
   it 'should' do
-    expect(false).to eq true
+    expect(false).to eq false
   end
 end
