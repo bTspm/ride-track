@@ -1,12 +1,11 @@
 module Domains::RideTrack::Uber
-  class PriceEstimate < BasePriceEstimate
+  class PriceEstimate < Domains::RideTrack::BasePriceEstimate
 
     attr_reader :display_name, :distance, :duration, :currency_code,
-                :high_estimate, :low_estimate, :estimate_range, :product_id,
-                :product
+                :high_estimate, :low_estimate, :product_id
 
     def initialize(response:)
-      raise ArgumentError.new('response and provider are required') if response.blank?
+      raise ArgumentError.new('response is required') if response.blank?
       @response = response
       @display_name = response[:display_name]
       @distance = response[:distance]
@@ -14,7 +13,6 @@ module Domains::RideTrack::Uber
       @currency_code = response[:currency_code]
       @high_estimate = response[:high_estimate]
       @low_estimate = response[:low_estimate]
-      @estimate_range = response[:estimate]
       @product_id = response[:product_id]
     end
 
@@ -22,12 +20,8 @@ module Domains::RideTrack::Uber
       Constants::UBER
     end
 
-    def local_name
-      response[:localized_display_name]
-    end
-
     def surge_value
-      response[:surge_multiplier] || 0
+      response[:surge_multiplier].presence || 0
     end
 
     def duration_in_minutes
@@ -37,10 +31,6 @@ module Domains::RideTrack::Uber
     
     def surge?
       surge_value > 1
-    end
-
-    def add_product(product:)
-      @product = product
     end
 
     private
