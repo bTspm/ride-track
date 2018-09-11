@@ -1,8 +1,19 @@
 module Domains::RideTrack
   class BasePriceEstimate
 
+    attr_reader :product
+
     def average_estimate
-      ((low_estimate || 1)  + (high_estimate || 1)) / 2.0
+      return '' if high_estimate.blank? || low_estimate.blank?
+      (high_estimate + low_estimate) / 2
+    end
+
+    def high_estimate
+      raise NotImplementedError
+    end
+
+    def low_estimate
+      raise NotImplementedError
     end
 
     def provider
@@ -11,6 +22,10 @@ module Domains::RideTrack
 
     def currency_code
       raise NotImplementedError
+    end
+
+    def product=(product)
+      @product = product
     end
 
   end
