@@ -1,10 +1,8 @@
 module Domains::RideTrack::Lyft
   class PriceEstimate < Domains::RideTrack::BasePriceEstimate
 
-    attr_reader :product
-
     def initialize(response:)
-      raise ArgumentError.new('response and provider are required') if response.blank?
+      raise ArgumentError.new('response is required') if response.blank?
       @response = response
     end
 
@@ -28,42 +26,39 @@ module Domains::RideTrack::Lyft
       response[:ride_type]
     end
 
-    def local_name
-      response[:display_name]
-    end
-
-    def surge_value
-      response[:primetime_percentage].to_i || 0
-    end
-
-    def duration_in_minutes
-      return 0 if duration.blank?
-      duration / 60
-    end
-    
-    def surge?
-      surge_value > 1
-    end
-
-    def high_estimate
-      response[:estimated_cost_cents_max] / 100
-    end
-
-    def low_estimate
-      response[:estimated_cost_cents_min] / 100
-    end
-
     def currency_code
       response[:currency]
     end
 
-    def add_product(product:)
-      @product = product
+    def surge_value
+      calc_surge_value
+    end
+
+
+
+    def high_estimate
+      calc_estimate(value: response[:estimated_cost_cents_max].presence)
+    end
+
+    def low_estimate
+      calc_estimate(value: response[:estimated_cost_cents_min].presence)
     end
 
     private
 
     attr_reader :response
+
+    def calc_surge_value
+      value = (response[:primetime_percentage].to_i || 0)
+      value == 0 ? value : (value / 100.00) + 1
+    end
+
+    def calc_estimate(value:)
+      value ? value / 100 : 0
+    end
+
+    def calc_duration
+    end
 
   end
 end

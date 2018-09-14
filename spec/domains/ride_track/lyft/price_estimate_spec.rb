@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Domains::RideTrack::Uber::PriceEstimate do
+describe Domains::RideTrack::Lyft::PriceEstimate do
 
-  let!(:response) {build_response.with_indifferent_access}
+  let(:response) {build_response.with_indifferent_access}
 
-  subject {Domains::RideTrack::Uber::PriceEstimate.new(response: response)}
+  subject {Domains::RideTrack::Lyft::PriceEstimate.new(response: response)}
 
   describe '#initialize' do
     context 'response nil' do
@@ -21,22 +21,22 @@ describe Domains::RideTrack::Uber::PriceEstimate do
       end
     end
 
-    context 'properties' do
+    context 'direct properties' do
       it 'should return instance with properties' do
         result = subject
-        expect(result.display_name).to eq 'UberPool'
-        expect(result.distance).to eq 40
-        expect(result.duration).to eq 3180
+        expect(result.display_name).to eq 'Shared'
+        expect(result.distance).to eq 42.82
+        expect(result.duration).to eq 3154
         expect(result.currency_code).to eq 'USD'
-        expect(result.provider).to eq 'uber'
-        expect(result.product_id).to eq '997acbb5-e102-41e1-b155-9df7de0a73f2'
+        expect(result.provider).to eq 'lyft'
+        expect(result.product_id).to eq 'lyft_line'
       end
     end
   end
 
   describe '#high_estimate' do
     it 'should return estimate value in 100s' do
-      expect(subject.high_estimate).to eq 76
+      expect(subject.high_estimate).to eq 70
     end
     context 'no max price value' do
       let(:response) {{a: ''}}
@@ -48,7 +48,7 @@ describe Domains::RideTrack::Uber::PriceEstimate do
 
   describe '#low_estimate' do
     it 'should return estimate value in 100s' do
-      expect(subject.low_estimate).to eq 61
+      expect(subject.low_estimate).to eq 65
     end
     context 'no min price value' do
       let(:response) {{a: ''}}
@@ -70,10 +70,12 @@ describe Domains::RideTrack::Uber::PriceEstimate do
     end
   end
 
+
+
   private
 
   def build_response
-    JSON.parse(File.read("#{::Rails.root}/spec/fixtures/ride_track/uber/estimates.json"))['prices'].first
+    JSON.parse(File.read("#{::Rails.root}/spec/fixtures/ride_track/lyft/estimates.json"))['cost_estimates'].first
   end
 
 end

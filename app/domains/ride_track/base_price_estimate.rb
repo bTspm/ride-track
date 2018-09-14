@@ -4,8 +4,7 @@ module Domains::RideTrack
     attr_reader :product
 
     def average_estimate
-      return '' if high_estimate.blank? || low_estimate.blank?
-      (high_estimate + low_estimate) / 2
+      calc_estimates
     end
 
     def high_estimate
@@ -16,16 +15,34 @@ module Domains::RideTrack
       raise NotImplementedError
     end
 
-    def provider
-      raise NotImplementedError
+    def surge?
+      surge_value > 1
     end
 
-    def currency_code
+    def surge_value
       raise NotImplementedError
     end
 
     def product=(product)
       @product = product
+    end
+
+    def duration_in_minutes
+      duration.blank? ? 0 : duration / 60
+    end
+
+    def duration
+      raise NotImplementedError
+    end
+
+    private
+
+    def valid_estimates?
+      high_estimate > 0 && low_estimate > 0
+    end
+
+    def calc_estimates
+      valid_estimates? ? (high_estimate + low_estimate) / 2 : nil
     end
 
   end
