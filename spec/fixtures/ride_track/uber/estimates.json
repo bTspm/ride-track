@@ -1,0 +1,60 @@
+{
+  "prices": [
+    {
+      "localized_display_name": "UberPool",
+      "distance": 40,
+      "display_name": "UberPool",
+      "product_id": "997acbb5-e102-41e1-b155-9df7de0a73f2",
+      "high_estimate": 76,
+      "low_estimate": 61,
+      "duration": 3180,
+      "surge_multiplier": 1.25,
+      "estimate": "$61-75",
+      "currency_code": "USD"
+    },
+    {
+      "localized_display_name": "UberX",
+      "distance": 40,
+      "display_name": "UberX",
+      "product_id": "55c66225-fbe7-4fd5-9072-eab1ece5e23e",
+      "high_estimate": 79,
+      "low_estimate": 64,
+      "duration": 3180,
+      "estimate": "$64-79",
+      "currency_code": "USD"
+    },
+    {
+      "localized_display_name": "Black SUV",
+      "distance": 40,
+      "display_name": "Black SUV",
+      "product_id": "6d318bcc-22a3-4af6-bddd-b409bfce1546",
+      "high_estimate": 230,
+      "low_estimate": 187,
+      "duration": 3180,
+      "estimate": "$187-230",
+      "currency_code": "USD"
+    },
+    {
+      "localized_display_name": "UberXL",
+      "distance": 40,
+      "display_name": "UberXL",
+      "product_id": "6f72dfc5-27f1-42e8-84db-ccc7a75f6969",
+      "high_estimate": 136,
+      "low_estimate": 110,
+      "duration": 3180,
+      "estimate": "$110-136",
+      "currency_code": "USD"
+    },
+    {
+      "localized_display_name": "Black",
+      "distance": 40,
+      "display_name": "Black",
+      "product_id": "6c84fd89-3f11-4782-9b50-97c468b19529",
+      "high_estimate": 217,
+      "low_estimate": 177,
+      "duration": 3180,
+      "estimate": "$177-217",
+      "currency_code": "USD"
+    }
+  ]
+}
