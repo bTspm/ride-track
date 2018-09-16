@@ -70,8 +70,6 @@ describe Domains::RideTrack::Lyft::PriceEstimate do
     end
   end
 
-
-
   private
 
   def build_response

@@ -15,11 +15,11 @@ module Domains::RideTrack::Lyft
     end
 
     def display_name
-      response[:display_name]
+      response[:display_name] || ''
     end
 
     def shared?
-      SHARED.include? display_name.downcase
+      display_name.downcase.include? 'shared'
     end
 
     def id
@@ -27,7 +27,7 @@ module Domains::RideTrack::Lyft
     end
 
     def distance_unit
-      Constants::MILE
+      Constants::MILE if has_price_details?
     end
 
     def has_price_details?
@@ -35,23 +35,23 @@ module Domains::RideTrack::Lyft
     end
 
     def base_price
-      response[:base_charge] / 100.0
+      calc_price(value: price_details[:base_charge])
     end
 
     def cost_per_minute
-      price_details[:cost_per_minute] / 100.0
+      calc_price(value: price_details[:cost_per_minute])
     end
 
     def cost_per_distance
-      price_details[:cost_per_mile] / 100.0
+      calc_price(value: price_details[:cost_per_mile])
     end
 
     def cancellation_fee
-      price_details[:cancel_penalty_amount] / 100.0
+      calc_price(value: price_details[:cancel_penalty_amount])
     end
 
     def minimum
-      price_details[:cost_minimum] / 100.0
+      calc_price(value: price_details[:cost_minimum])
     end
 
     def currency_code
@@ -60,12 +60,14 @@ module Domains::RideTrack::Lyft
 
     private
 
-    SHARED = 'shared'.freeze
-
     attr_reader :response
 
     def price_details
       response[:pricing_details] || {}
+    end
+
+    def calc_price(value:)
+      value.blank? ? nil  : value / 100.00
     end
 
   end

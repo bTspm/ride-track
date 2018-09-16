@@ -34,8 +34,6 @@ module Domains::RideTrack::Lyft
       calc_surge_value
     end
 
-
-
     def high_estimate
       calc_estimate(value: response[:estimated_cost_cents_max].presence)
     end
@@ -55,9 +53,6 @@ module Domains::RideTrack::Lyft
 
     def calc_estimate(value:)
       value ? value / 100 : 0
-    end
-
-    def calc_duration
     end
 
   end

@@ -1,0 +1,129 @@
+{
+  "products": [
+    {
+      "upfront_fare_enabled": true,
+      "capacity": 2,
+      "product_id": "997acbb5-e102-41e1-b155-9df7de0a73f2",
+      "price_details": {
+        "service_fees": [
+          {
+            "fee": 1.85,
+            "name": "Booking fee"
+          }
+        ],
+        "cost_per_minute": 0.16,
+        "distance_unit": "mile",
+        "minimum": 6.85,
+        "cost_per_distance": 1.28,
+        "base": 2.1,
+        "cancellation_fee": 5.0,
+        "currency_code": "USD"
+      },
+      "image": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-uberpool.png",
+      "cash_enabled": false,
+      "shared": true,
+      "short_description": "Pool",
+      "display_name": "UberPool",
+      "product_group": "rideshare",
+      "description": "Shared rides, door to door"
+    },
+    {
+      "upfront_fare_enabled": true,
+      "capacity": 4,
+      "product_id": "55c66225-fbe7-4fd5-9072-eab1ece5e23e",
+      "price_details": {
+        "service_fees": [
+          {
+            "fee": 1.85,
+            "name": "Booking fee"
+          }
+        ],
+        "cost_per_minute": 0.21,
+        "distance_unit": "mile",
+        "minimum": 6.85,
+        "cost_per_distance": 1.35,
+        "base": 2.1,
+        "cancellation_fee": 5.0,
+        "currency_code": "USD"
+      },
+      "image": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-uberx.png",
+      "cash_enabled": false,
+      "shared": false,
+      "short_description": "UberX",
+      "display_name": "UberX",
+      "product_group": "uberx",
+      "description": "THE LOW-COST UBER"
+    },
+    {
+      "upfront_fare_enabled": true,
+      "capacity": 6,
+      "product_id": "6d318bcc-22a3-4af6-bddd-b409bfce1546",
+      "price_details": {
+        "service_fees": [],
+        "cost_per_minute": 0.5,
+        "distance_unit": "mile",
+        "minimum": 25.0,
+        "cost_per_distance": 4.35,
+        "base": 14.0,
+        "cancellation_fee": 10.0,
+        "currency_code": "USD"
+      },
+      "image": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-suv.png",
+      "cash_enabled": false,
+      "shared": false,
+      "short_description": "Black SUV",
+      "display_name": "Black SUV",
+      "product_group": "suv",
+      "description": "ROOM FOR EVERYONE"
+    },
+    {
+      "upfront_fare_enabled": true,
+      "capacity": 6,
+      "product_id": "6f72dfc5-27f1-42e8-84db-ccc7a75f6969",
+      "price_details": {
+        "service_fees": [
+          {
+            "fee": 2.1,
+            "name": "Booking fee"
+          }
+        ],
+        "cost_per_minute": 0.35,
+        "distance_unit": "mile",
+        "minimum": 8.1,
+        "cost_per_distance": 2.5,
+        "base": 3.5,
+        "cancellation_fee": 5.0,
+        "currency_code": "USD"
+      },
+      "image": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-uberxl2.png",
+      "cash_enabled": false,
+      "shared": false,
+      "short_description": "UberXL",
+      "display_name": "UberXL",
+      "product_group": "uberxl",
+      "description": "LOW-COST RIDES FOR LARGE GROUPS"
+    },
+    {
+      "upfront_fare_enabled": true,
+      "capacity": 4,
+      "product_id": "6c84fd89-3f11-4782-9b50-97c468b19529",
+      "price_details": {
+        "service_fees": [],
+        "cost_per_minute": 0.45,
+        "distance_unit": "mile",
+        "minimum": 15.0,
+        "cost_per_distance": 4.0,
+        "base": 7.0,
+        "cancellation_fee": 10.0,
+        "currency_code": "USD"
+      },
+      "image": "https://d1a3f4spazzrp4.cloudfront.net/car-types/mono/mono-black.png",
+      "cash_enabled": false,
+      "shared": false,
+      "short_description": "Black",
+      "display_name": "Black",
+      "product_group": "uberblack",
+      "description": "THE ORIGINAL UBER"
+    }
+  ]
+}

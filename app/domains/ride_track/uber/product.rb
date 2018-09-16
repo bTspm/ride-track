@@ -1,39 +1,45 @@
 module Domains::RideTrack::Uber
   class Product < Domains::RideTrack::BaseProduct
 
-    attr_reader :capacity, :image, :display_name, :description
-
     def initialize(response:)
       raise ArgumentError.new('response is required') if response.blank?
       @response = response
-      @capacity = response[:capacity]
-      @image = response[:image]
-      @display_name = response[:display_name]
-      @description = response[:description]
     end
 
-    def description
-      "#{response[:short_description]} - #{response[:description]}"
+    def capacity
+      response[:capacity]
+    end
+
+    def image
+      response[:image]
+    end
+
+    def display_name
+      response[:display_name]
     end
 
     def shared?
       response[:shared]
     end
 
-    def base_price
-      response[:base]
+    def id
+      response[:product_id]
     end
 
     def pay_in_cash?
       response[:cash_enabled]
     end
 
-    def id
-      response[:product_id]
-    end
-
     def distance_unit
       price_details[:distance_unit]
+    end
+
+    def has_price_details?
+      price_details.present?
+    end
+
+    def base_price
+      price_details[:base]
     end
     
     def cost_per_minute
@@ -54,10 +60,6 @@ module Domains::RideTrack::Uber
 
     def currency_code
       price_details[:currency_code]
-    end
-
-    def has_price_details?
-      price_details.present?
     end
 
     private
