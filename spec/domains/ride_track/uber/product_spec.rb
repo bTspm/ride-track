@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Domains::RideTrack::Uber::Product do
 
   let(:response) {build_response.with_indifferent_access}
-  let(:ins) {::Domains::RideTrack::Lyft::Product}
+  let(:ins) {::Domains::RideTrack::Uber::Product}
 
   describe '#initialize' do
     subject {ins.new(response: response)}
