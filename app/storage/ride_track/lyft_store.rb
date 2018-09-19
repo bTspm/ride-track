@@ -19,8 +19,8 @@ module Storage::RideTrack
 
       response = client.get_products(
           latitude: request.latitude,
-          longitude: request.longitude,
-          )
+          longitude: request.longitude
+      )
       validate_response(response: response)
       build_products(response: response)
     end
@@ -37,13 +37,13 @@ module Storage::RideTrack
     end
 
     def build_price_estimates(response:)
-      response.body[:cost_estimates].map { |price|
+      response.body[:cost_estimates].map {|price|
         Domains::RideTrack::Lyft::PriceEstimate.new(response: price)
       }
     end
 
     def build_products(response:)
-      response.body[:ride_types].map { |product|
+      response.body[:ride_types].map {|product|
         Domains::RideTrack::Lyft::Product.new(response: product)
       }
     end
