@@ -11,7 +11,7 @@ coordinatesSearch = (function () {
             detailsAttribute: "data-origin"
         });
 
-        $('.estimate').click(function () {
+        $('#estimate').click(function () {
             estimate();
         });
     }

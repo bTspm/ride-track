@@ -1,0 +1,61 @@
+<div class="filters">
+
+  <% if filters.providers.any? %>
+    <div class="card-group-item">
+      <div class="card-header text-center">
+        <h4>Providers</h4>
+      </div>
+
+      <div class="card-body">
+        <% filters.providers.each do |provider, count| %>
+          <div class="custom-control custom-checkbox">
+            <span class="float-right badge badge-light round"><%= count %></span>
+            <input type="checkbox" class="custom-control-input" id="<%= provider %>">
+            <label class="custom-control-label" for="<%= provider %>"><%= provider.classify %></label>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+
+
+  <% if filters.capacities.any? %>
+    <div class="card-group-item">
+      <div class="card-header text-center">
+        <h4>Capacities</h4>
+      </div>
+
+      <div class="card-body">
+        <% filters.capacities.each do |capacity, count| %>
+          <div class="custom-control custom-checkbox">
+            <span class="float-right badge badge-light round"><%= count %></span>
+            <input type="checkbox" class="custom-control-input" id="<%= capacity %>">
+            <label class="custom-control-label" for="<%= capacity %>"><%= "#{capacity} People" %></label>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+
+  <% if filters.features.any? %>
+    <div class="card-group-item">
+      <div class="card-header text-center">
+        <h4>Features</h4>
+      </div>
+
+      <div class="card-body">
+        <% filters.features.each do |feature, count| %>
+          <div class="custom-control custom-checkbox">
+            <span class="float-right badge badge-light round"><%= count %></span>
+            <input type="checkbox" class="custom-control-input" id="<%= feature %>">
+            <label class="custom-control-label" for="<%= feature %>"><%= feature.titleize %></label>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  <% end %>
+
+</div>
