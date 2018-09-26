@@ -1,10 +1,9 @@
-module RideTrack
+module Domains::RideTrack
   class Filters
 
-    def initialize(products:, estimates:)
-      raise ArgumentError.new('both products and estimates are required') if products.blank? || estimates.blank?
+    def initialize(products:)
+      raise ArgumentError.new('products are required') if products.blank?
       @products = products
-      @estimates = estimates
     end
 
     def capacities
@@ -12,7 +11,7 @@ module RideTrack
     end
 
     def providers
-      filter_with_frequency(array: estimates.map(&:provider))
+      filter_with_frequency(array: products.map(&:provider))
     end
 
     def features
@@ -25,7 +24,7 @@ module RideTrack
 
     private
 
-    attr_reader :products, :estimates
+    attr_reader :products
 
     def filter_with_frequency(array:)
       return {} if array.blank?

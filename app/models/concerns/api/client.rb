@@ -2,24 +2,18 @@ module Api
   class Client
 
     def initialize(url: nil, auth_type:, auth_options: {}, adapter: Faraday.default_adapter, headers: {})
+      raise ArgumentError.new('Both url and auth_type are required') if url.blank? || auth_type.blank?
       @url = url
       @auth_type = auth_type
       @auth_options = auth_options.with_indifferent_access
       @adapter = adapter
-      @headers = headers
+      @headers = headers.with_indifferent_access
       @conn = build_connection
     end
 
     def _get(url:, cache_key:, expire_time: CACHE_IN_SECONDS)
       response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
         conn.get url
-      end
-      parse_response(response: response)
-    end
-
-    def _post(url:, cache_key:, expire_time: CACHE_IN_SECONDS, body:)
-      response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
-        conn.post url, body
       end
       parse_response(response: response)
     end

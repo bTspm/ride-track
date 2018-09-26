@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Domains::Address do
 
-
   let(:details) {{latitude: 'lat', longitude: 'long'}}
   subject {Domains::Address.new(details: details)}
 

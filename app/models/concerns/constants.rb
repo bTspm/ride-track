@@ -6,5 +6,6 @@ module Constants
 
   # Units
   MILE = 'mile'.freeze
+  KM = 'km'.freeze
 
 end

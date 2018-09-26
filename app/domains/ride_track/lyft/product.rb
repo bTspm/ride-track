@@ -6,6 +6,10 @@ module Domains::RideTrack::Lyft
       @response = response
     end
 
+    def provider
+      Constants::LYFT
+    end
+
     def capacity
       response[:seats]
     end

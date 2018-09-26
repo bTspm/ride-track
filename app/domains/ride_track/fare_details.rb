@@ -1,4 +1,4 @@
-module RideTrack
+module Domains::RideTrack
   class FareDetails
 
     def initialize(products:, estimates:)
@@ -12,7 +12,7 @@ module RideTrack
     end
 
     def minimum_distance
-      estimates.map(&:distance).min
+      estimates.map(&:distance_in_unit).min
     end
 
     def minimum_duration_in_minutes

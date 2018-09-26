@@ -9,14 +9,14 @@ module RideShareHelper
 
   end
 
-  def categories(price_estimate:)
+  def categories(product:)
     categories = ''
-    categories += "#{price_estimate.product.capacity} "
-    categories += "#{price_estimate.provider} "
-    categories += 'cash ' if price_estimate.product.pay_in_cash?
-    categories += 'shared ' if price_estimate.product.shared?
-    if price_estimate.product.cancellation_fee.nil? || price_estimate.product.cancellation_fee == 0
-      categories += 'no_cancellation'
+    categories += "#{product.capacity}"
+    categories += " #{product.provider}"
+    categories += ' cash' if product.pay_in_cash?
+    categories += ' shared' if product.shared?
+    if product.cancellation_fee.nil? || product.cancellation_fee == 0
+      categories += ' no_cancellation'
     end
     categories
   end

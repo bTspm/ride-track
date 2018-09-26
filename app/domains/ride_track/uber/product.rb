@@ -6,6 +6,10 @@ module Domains::RideTrack::Uber
       @response = response
     end
 
+    def provider
+      Constants::UBER
+    end
+
     def capacity
       response[:capacity]
     end

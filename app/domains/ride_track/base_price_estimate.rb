@@ -27,11 +27,12 @@ module Domains::RideTrack
       @product = product
     end
 
-    def duration_in_minutes
-      duration.blank? ? 0 : duration / 60
+    def distance_in_unit
+      return distance if product.distance_unit == distance_unit
+      (convert_distance).round(2)
     end
 
-    def duration
+    def distance_unit
       raise NotImplementedError
     end
 
@@ -43,6 +44,16 @@ module Domains::RideTrack
 
     def calc_estimates
       valid_estimates? ? (high_estimate + low_estimate) / 2 : nil
+    end
+
+    def convert_distance
+      if distance_unit == Constants::MILE
+        distance * 1.6
+      elsif distance_unit == Constants::KM
+        distance * 0.6
+      else
+        raise Exceptions::RideTrack::NoSelectionError.new(selection: distance_unit)
+      end
     end
 
   end

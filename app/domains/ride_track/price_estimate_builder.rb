@@ -17,11 +17,11 @@ module RideTrack
     end
 
     def filters
-      RideTrack::Filters.new(products: products, estimates: estimates)
+      Domains::RideTrack::Filters.new(products: products)
     end
 
     def fare_details
-      RideTrack::FareDetails.new(products: products, estimates: estimates)
+      Domains::RideTrack::FareDetails.new(products: products, estimates: estimates)
     end
 
     private

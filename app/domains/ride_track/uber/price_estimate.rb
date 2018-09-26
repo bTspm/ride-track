@@ -10,6 +10,10 @@ module Domains::RideTrack::Uber
       Constants::UBER
     end
 
+    def distance_unit
+      Constants::MILE
+    end
+
     def display_name
       response[:display_name]
     end
@@ -20,6 +24,10 @@ module Domains::RideTrack::Uber
 
     def duration
       response[:duration]
+    end
+
+    def duration_in_minutes
+      duration.blank? ? 0 : duration / 60
     end
 
     def product_id
