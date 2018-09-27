@@ -25,6 +25,8 @@ module Services
       estimate_builder.estimates += price_estimates
     rescue Exceptions::RideTrack::ApiError => e
       estimate_builder.errors << e.message
+    rescue Exception => e
+      estimate_builder.errors << e.message
     end
 
   end

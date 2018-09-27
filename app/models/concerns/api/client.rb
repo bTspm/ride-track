@@ -18,6 +18,13 @@ module Api
       parse_response(response: response)
     end
 
+    def _post(url:, cache_key:, expire_time: CACHE_IN_SECONDS, body:)
+      response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
+        conn.post url, body
+      end
+      parse_response(response: response)
+    end
+
     private
 
     CACHE_IN_SECONDS = 60
