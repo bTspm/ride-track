@@ -31,6 +31,7 @@ describe Domains::RideTrack::Uber::Product do
         expect(result.shared?).to eq true
         expect(result.id).to eq '997acbb5-e102-41e1-b155-9df7de0a73f2'
         expect(result.pay_in_cash?).to eq false
+        expect(result.provider).to eq 'uber'
       end
     end
   end

@@ -29,6 +29,7 @@ describe Domains::RideTrack::Lyft::Product do
         expect(result.image).to eq 'https://cdn.lyft.com/assets/car_standard.png'
         expect(result.id).to eq 'lyft_line'
         expect(result.pay_in_cash?).to eq false
+        expect(result.provider).to eq 'lyft'
       end
     end
   end

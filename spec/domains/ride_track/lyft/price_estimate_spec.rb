@@ -29,6 +29,7 @@ describe Domains::RideTrack::Lyft::PriceEstimate do
         expect(result.duration).to eq 3154
         expect(result.currency_code).to eq 'USD'
         expect(result.provider).to eq 'lyft'
+        expect(result.distance_unit).to eq 'mile'
         expect(result.product_id).to eq 'lyft_line'
       end
     end
@@ -66,6 +67,18 @@ describe Domains::RideTrack::Lyft::PriceEstimate do
       let(:response) {{a: ''}}
       it 'should return the value as 0' do
         expect(subject.surge_value).to eq 0
+      end
+    end
+  end
+
+  describe '#duration_in_minutes' do
+    it 'should return the calculated surge value' do
+      expect(subject.duration_in_minutes).to eq 52
+    end
+    context 'no duration' do
+      let(:response) {{a: ''}}
+      it 'should return the value as 0' do
+        expect(subject.duration_in_minutes).to eq 0
       end
     end
   end

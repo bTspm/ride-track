@@ -29,6 +29,7 @@ describe Domains::RideTrack::Uber::PriceEstimate do
         expect(result.duration).to eq 3180
         expect(result.currency_code).to eq 'USD'
         expect(result.provider).to eq 'uber'
+        expect(result.distance_unit).to eq 'mile'
         expect(result.product_id).to eq '997acbb5-e102-41e1-b155-9df7de0a73f2'
       end
     end
@@ -66,6 +67,18 @@ describe Domains::RideTrack::Uber::PriceEstimate do
       let(:response) {{a: ''}}
       it 'should return the value as 0' do
         expect(subject.surge_value).to eq 0
+      end
+    end
+  end
+
+  describe '#duration_in_minutes' do
+    it 'should return the calculated surge value' do
+      expect(subject.duration_in_minutes).to eq 53
+    end
+    context 'no duration' do
+      let(:response) {{a: ''}}
+      it 'should return the value as 0' do
+        expect(subject.duration_in_minutes).to eq 0
       end
     end
   end

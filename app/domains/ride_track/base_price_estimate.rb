@@ -28,8 +28,12 @@ module Domains::RideTrack
     end
 
     def distance_in_unit
-      return distance if product.distance_unit == distance_unit
+      return distance if product_distance_unit == distance_unit
       (convert_distance).round(2)
+    end
+
+    def distance
+      raise NotImplementedError
     end
 
     def distance_unit
@@ -37,6 +41,10 @@ module Domains::RideTrack
     end
 
     private
+
+    def product_distance_unit
+      product.try(:distance_unit)
+    end
 
     def valid_estimates?
       high_estimate > 0 && low_estimate > 0
