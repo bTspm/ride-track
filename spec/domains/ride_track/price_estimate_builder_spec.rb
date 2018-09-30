@@ -31,6 +31,7 @@ describe Domains::RideTrack::PriceEstimateBuilder do
   describe 'build' do
     context 'empty estimates' do
       it 'should return estimates empty' do
+        subject.estimates = []
         subject.build
         expect(subject.estimates).to eq []
       end
@@ -51,6 +52,20 @@ describe Domains::RideTrack::PriceEstimateBuilder do
         products = build_products.delete_if{|p| p.average_estimate.nil?}
         expect(subject.estimates.map(&:product).compact).to match_array products
       end
+    end
+  end
+
+  describe 'filters' do
+    it 'should return filters' do
+      allow(Domains::RideTrack::Filters).to receive(:new) {'Filters'}
+      expect(subject.filters).to eq 'Filters'
+    end
+  end
+
+  describe 'fare_details' do
+    it 'should return fare_details' do
+      allow(Domains::RideTrack::FareDetails).to receive(:new) {'Fare Details'}
+      expect(subject.fare_details).to eq 'Fare Details'
     end
   end
 
