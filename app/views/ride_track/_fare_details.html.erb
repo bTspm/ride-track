@@ -1,0 +1,15 @@
+<div class="card-group-item">
+  <div class="card-header text-center">
+    <h4>Fare Details</h4>
+  </div>
+
+  <div class="card-body ">
+    <h5><i class="fas fa-arrows-alt-h text-muted fixed-width-1"></i> Distance</h5>
+    <%= distance_with_units(distance: fare_details.minimum_distance, unit: fare_details.distance_unit) %>
+
+    <hr>
+
+    <h5><i class="fas fa-hourglass-half text-muted fixed-width-1"></i> Duration</h5>
+    <%= minimum_distance(duration: fare_details.minimum_duration_in_minutes) %>
+  </div>
+</div>

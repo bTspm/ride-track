@@ -1,0 +1,34 @@
+<div class="ride-share-estimate card ride-share provider px-3 mb-4 col-md-3" data-category="<%= categories(product: price_estimate.product) %>">
+  <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom text-white text-center <%= price_estimate.provider %>">
+    <%= price_estimate.display_name %>
+  </span>
+  <div class="bg-transparent card-header text-center border-0 <%= price_estimate.provider %>">
+    <%= cost_with_currency(cost: price_estimate.average_estimate, currency: price_estimate.currency_code) %>
+  </div>
+  <br>
+  <table class="card-pricing table table-striped table-sm small">
+    <tbody>
+    <% if price_estimate&.product&.has_price_details? %>
+      <tr>
+        <th class="text-left"><%= I18n.t('ride_track.labels.capacity') %></th>
+        <td class="text-right"><%= price_estimate.product.capacity %> </td>
+      </tr>
+      <tr>
+        <th class="text-left"><%= I18n.t('ride_track.labels.cancellation') %></th>
+        <td class="text-right"><%= price_estimate.product.cancellation_fee %></td>
+      </tr>
+      <tr>
+        <th class="text-left"><%= I18n.t('ride_track.labels.cost_per_minute') %></th>
+        <td class="text-right"><%= price_estimate.product.cost_per_minute %></td>
+      </tr>
+      <tr>
+        <th class="text-left"><%= I18n.t('ride_track.labels.cost_per_distance', distance_unit: price_estimate.product.distance_unit.classify) %></th>
+        <td class="text-right"><%= price_estimate.product.cost_per_distance %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <input type="button" value="<%= I18n.t('ride_track.buttons.ride_now') %>" class="<%= price_estimate.provider %> btn text-white mb-2">
+  </div>
+</div>
