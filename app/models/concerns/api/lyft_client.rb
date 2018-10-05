@@ -2,7 +2,7 @@ module Api
   class LyftClient < Client
 
     def initialize
-      super(url: URL, auth_type: 'Bearer', auth_options: {token: access_token})
+      super(url: URL, auth_type: BEARER, auth_options: {token: access_token})
     end
 
     def get_price_estimates(start_latitude:, start_longitude:, end_latitude:, end_longitude:)
@@ -31,21 +31,19 @@ module Api
     AUTH_PATH = '/oauth/token'.freeze
     VERSION = 'v1'.freeze
 
-    attr_reader :conn
-
     def access_token
-      @access_token ||= client_for_token._post(
+      client_for_token._post(
           url: AUTH_PATH,
           cache_key: 'lyft-key',
           expire_time: 86400,
-          body: auth_params
+          request: auth_params
       ).body[:access_token]
     end
 
     def client_for_token
       Api::Client.new(
           url: URL,
-          auth_type: 'Basic Auth',
+          auth_type: BASIC_AUTH,
           auth_options: {username: 'oOsUibZcOFA6', password: 'G_zZxIMJKmCxOwp8ed51P2jwUgWDpcif'}
       )
     end

@@ -2,7 +2,7 @@ module Api
   class UberClient < Client
 
     def initialize
-      super(url: URL, auth_type: 'Token', auth_options: {token: 'qAOTxuARNpS_FZbOQIlqrW9_dCSYaRRRmqUSktFl'})
+      super(url: URL, auth_type: TOKEN, auth_options: {token: 'qAOTxuARNpS_FZbOQIlqrW9_dCSYaRRRmqUSktFl'})
     end
 
     def get_price_estimates(start_latitude:, start_longitude:, end_latitude:, end_longitude:)
@@ -29,8 +29,6 @@ module Api
 
     URL = 'https://api.uber.com/'.freeze
     VERSION = 'v1.2'.freeze
-
-    attr_reader :conn
 
   end
 end

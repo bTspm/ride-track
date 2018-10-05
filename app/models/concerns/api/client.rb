@@ -1,12 +1,14 @@
 module Api
   class Client
 
-    def initialize(url: nil, auth_type:, auth_options: {}, adapter: Faraday.default_adapter, headers: {})
-      raise ArgumentError.new('Both url and auth_type are required') if url.blank? || auth_type.blank?
+    def initialize(url:, auth_type:, auth_options:, headers: {})
+      if url.blank? || auth_type.blank? || auth_options.blank?
+        raise ArgumentError.new('auth_options, url and auth_type are required')
+      end
+
       @url = url
       @auth_type = auth_type
       @auth_options = auth_options.with_indifferent_access
-      @adapter = adapter
       @headers = headers.with_indifferent_access
       @conn = build_connection
     end
@@ -18,18 +20,25 @@ module Api
       parse_response(response: response)
     end
 
-    def _post(url:, cache_key:, expire_time: CACHE_IN_SECONDS, body:)
+    def _post(url:, cache_key:, expire_time: CACHE_IN_SECONDS, request:)
       response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
-        conn.post url, body
+        conn.post url, request
       end
       parse_response(response: response)
     end
 
     private
 
+    #auth types
+    BEARER = 'Bearer'.freeze
+    TOKEN = 'Token'.freeze
+    BASIC = 'Basic'.freeze
+    BASIC_AUTH = 'Basic Auth'.freeze
+    AUTHORIZATION = [BEARER, TOKEN, BASIC]
+
     CACHE_IN_SECONDS = 60
 
-    attr_reader :conn, :url, :auth_type, :auth_options, :adapter, :headers
+    attr_reader :conn, :url, :auth_type, :auth_options, :headers
 
     def parse_response(response:)
       Api::Response.new(
@@ -46,12 +55,12 @@ module Api
         # Headers
         conn.headers = headers
         case auth_type
-        when 'Bearer', 'Token', 'Basic'
+        when *AUTHORIZATION
           conn.authorization auth_type, auth_options[:token]
-        when 'Basic Auth'
-          conn.basic_auth(auth_options[:username], auth_options[:password])
+        when BASIC_AUTH
+          conn.basic_auth auth_options[:username], auth_options[:password]
         else
-          'a'
+          raise Exceptions::RideTrack::NoSelectionError.new(selection: auth_type)
         end
 
         # Request
@@ -61,7 +70,7 @@ module Api
         conn.response :json
         conn.response :logger
 
-        conn.adapter adapter
+        conn.adapter Faraday.default_adapter
       end
     end
 
