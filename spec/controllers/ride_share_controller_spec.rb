@@ -10,7 +10,7 @@ describe RideTrackController, type: :request do
 
   describe 'GET home_page' do
     subject {get '/ride_track/home_page'}
-    it 'should render home_page' do
+    xit 'should render home_page' do
       subject
       assert_response :success
     end
