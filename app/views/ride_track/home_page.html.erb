@@ -1,0 +1,26 @@
+<div class="jumbotron">
+  <div class="row">
+    <div class="container text-center ">
+      <h1><i class="fas fa-taxi"></i> Fare Estimate Online</h1>
+      <h3>Instantly Calculate the Cost of a Ride!</h3>
+
+      <hr>
+
+      <div id="coordinates_search" class="container w-50">
+        <%= render partial: 'coordinates_search' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="price_estimates">
+    <!--  Place Holder-->
+  </div>
+
+  <div class="row" id="directions_map">
+    <!--  Place Holder-->
+  </div>
+</div>
+
+<%= render 'information' %>

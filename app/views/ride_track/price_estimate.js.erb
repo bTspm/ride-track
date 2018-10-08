@@ -1,0 +1,2 @@
+$('#price_estimates').html("<%=j render 'ride_track/estimates' %>");
+$('#directions_map').html("<%=j render 'ride_track/directions', request: @price_estimates.request %>");

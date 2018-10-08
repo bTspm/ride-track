@@ -5,13 +5,24 @@ module RideShareHelper
     "approx ~ #{distance} #{unit.classify.pluralize}"
   end
 
-  def avg_cost_with_currency_code
+  def minimum_distance(duration:)
+    return '' if duration.blank?
+    text = "approx ~"
+    return "#{text} #{duration} min" if duration < 60
+    hours = duration / 60
+    minutes = (duration) % 60
+    "#{text} #{ hours }hr #{ minutes }min"
+  end
 
+  def cost_with_currency(cost:, currency:)
+    content_tag :span do
+      concat content_tag(:h4, cost)
+      concat currency
+    end
   end
 
   def categories(product:)
-    categories = ''
-    categories += "#{product.capacity}"
+    categories = "#{product.capacity}"
     categories += " #{product.provider}"
     categories += ' cash' if product.pay_in_cash?
     categories += ' shared' if product.shared?

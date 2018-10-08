@@ -1,23 +1,18 @@
-<div class="container">
-  <div class="row">
-
-    <div class="col-md-3">
-      <div class="card">
-        <%= render 'ride_track/fare_details', fare_details: @price_estimates.fare_details %>
-        <%= render 'ride_track/filter', filters: @price_estimates.filters %>
-      </div>
+<div class="row">
+  <div class="col-md-3">
+    <div class="card">
+      <%= render 'ride_track/fare_details', fare_details: @price_estimates.fare_details %>
+      <%= render 'ride_track/filter', filters: @price_estimates.filters %>
     </div>
-
-    <div class="col-md-9">
-      <% @price_estimates.estimates.each_slice(4).each do |slice| %>
-        <div class="ride-share-estimates pricing card-deck flex-column flex-md-row mb-3">
-          <% slice.each do |pe| %>
-            <%= render 'ride_track/provider_price_estimate', price_estimate: pe %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-
   </div>
 
+  <div class="col-md-9">
+    <% @price_estimates.estimates.each_slice(4).each do |slice| %>
+      <div class="ride-share-estimates pricing card-deck flex-column flex-md-row mb-3">
+        <% slice.each do |pe| %>
+          <%= render 'ride_track/provider_price_estimate', price_estimate: pe %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>

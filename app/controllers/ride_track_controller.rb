@@ -4,10 +4,11 @@ class RideTrackController < ApplicationController
   end
 
   def price_estimate
-    @price_estimates = Services::RideTrackService.new.get_price_estimates(
+    request = Domains::RideTrack::PriceEstimateRequest.new(
         origin_details: estimate_origin_params,
         destination_details: estimate_destination_params
     )
+    @price_estimates = ride_track_service.get_price_estimates(request: request)
   end
 
   private

@@ -1,0 +1,30 @@
+.uber {
+  background-color: #0E3542;
+}
+
+.lyft {
+  background-color: #ff00bf;
+}
+
+.card .ride-share {
+  background-color: #fdfdfd;
+  border-top: 2px solid #002663;
+  border-radius: 2px;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.05);
+}
+
+.card-header {
+  background-color: #fdfdfd;
+  color: #002663;
+}
+
+.card-body + .card-body {
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.page-footer {
+  padding-top: 35px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  padding-bottom: 20px;
+}

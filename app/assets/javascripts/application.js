@@ -14,12 +14,8 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require jquery3
-//= require popper
-//= require bootstrap
-//= require underscore
 //= require gmaps/google
-// = require jquery.geocomplete
 
+// Custom
 // = require ride_track
 // = require maps
