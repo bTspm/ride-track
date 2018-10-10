@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require gmaps/google
-// = require jquery.geocomplete.min
+// = require geocomplete
 
 // Custom
 // = require ride_track
