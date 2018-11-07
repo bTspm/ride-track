@@ -1,4 +1,4 @@
-<%= form_tag(ride_track_price_estimate_path, method: :get, remote: true, id: 'coordinate-search') do %>
+<%= form_tag(ride_tracks_price_estimate_path, method: :get, remote: true, id: 'coordinate-search') do %>
   <div class="form-group">
     <%= label_tag I18n.t('ride_track.labels.origin') %>
     <%= text_field_tag 'origin_details[address]', nil,

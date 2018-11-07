@@ -1,4 +1,4 @@
-class RideTrackController < ApplicationController
+class RideTracksController < ApplicationController
 
   def home
   end

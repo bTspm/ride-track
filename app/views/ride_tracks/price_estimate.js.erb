@@ -3,7 +3,7 @@ var estimateContainer = $('#price_estimates')
 <% errors = @price_estimates.try(:errors) || [@error] %>
 
 <% if errors.try(:any?) %>
-  estimateContainer.empty().html("<%=j render 'ride_track/errors', errors: errors %>");
+  estimateContainer.empty().html("<%=j render 'ride_tracks/errors', errors: errors %>");
 <% elsif @price_estimates.try(:estimates).try(:any?) %>
-  estimateContainer.empty().html("<%=j render 'ride_track/estimates' %>");
+  estimateContainer.empty().html("<%=j render 'ride_tracks/estimates' %>");
 <% end %>
