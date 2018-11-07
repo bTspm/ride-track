@@ -1,6 +1,6 @@
 class RideTrackController < ApplicationController
 
-  def home_page
+  def home
   end
 
   def price_estimate
