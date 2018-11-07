@@ -7,20 +7,6 @@ describe Domains::RideTrack::Lyft::PriceEstimate do
   subject {Domains::RideTrack::Lyft::PriceEstimate.new(response: response)}
 
   describe '#initialize' do
-    context 'response nil' do
-      let(:response) {nil}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
-    context 'response empty' do
-      let(:response) {{}}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
     context 'direct properties' do
       it 'should return instance with properties' do
         result = subject

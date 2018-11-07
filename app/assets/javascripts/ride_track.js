@@ -1,43 +1,55 @@
-coordinatesSearch = (function () {
-    function initCordSearch() {
-        $("#destination_address").geocomplete({
-            details: "#destination_details",
-            detailsAttribute: "data-destination"
+var coordinatesSearch = {
+    init: function() {
+        this.origin = $("#origin-address");
+        this.destination = $("#destination-address");
+
+        this.originLatitudeSelector = $("#origin-latitude");
+        this.originLongitudeSelector = $("#origin-longitude");
+        this.destinationLongitudeSelector = $("#destination-latitude");
+        this.destinationitudeSelector = $("#destination-longitude");
+
+        coordinatesSearch.bindEvents();
+    },
+
+    bindEvents: function() {
+        this.origin.on("input", function() {
+            $("#origin-latitude").val("");
+            $("#origin-longitude").val("");
         });
 
-
-        $("#origin_address").geocomplete({
-            details: "#origin_details",
-            detailsAttribute: "data-origin"
+        this.destination.on("input", function() {
+            $("#destination-latitude").val("");
+            $("#destination-longitude").val("");
         });
 
-        $('#estimate').click(function () {
-            estimate();
+        var originAutoComplete = new google.maps.places.Autocomplete(
+            coordinatesSearch.origin[0]
+            ),
+            destinationAutoComplete = new google.maps.places.Autocomplete(
+                coordinatesSearch.destination[0]
+            );
+
+        coordinatesSearch.bindChange(originAutoComplete, "origin");
+        coordinatesSearch.bindChange(destinationAutoComplete, "destination");
+    },
+
+    bindChange: function(autoComplete, type) {
+        google.maps.event.addListener(autoComplete, "place_changed", function() {
+            var place = autoComplete.getPlace();
+            coordinatesSearch.fillInAddress(type, place);
         });
-    }
+    },
 
-    function estimate() {
-        var origin_data = extractData('origin', document);
-        var destination_data = extractData('destination', document);
-        common.initAjax('ride_track/price_estimate', {origin_details: origin_data, destination_details: destination_data});
-    }
-
-    function extractData(type, element){
-        if (type.length === 0 || element.length === 0) {
-            return {};
+    fillInAddress: function(type, place) {
+        var location = place.geometry.location;
+        if (type === "origin") {
+            coordinatesSearch.originLatitudeSelector.val(location.lat());
+            coordinatesSearch.originLongitudeSelector.val(location.lng());
+        } else if (type === "destination") {
+            coordinatesSearch.destinationLongitudeSelector.val(location.lat());
+            coordinatesSearch.destinationitudeSelector.val(location.lng());
+        } else {
+            console.log("unknown type " + type);
         }
-        var data = {
-            latitude: element.getElementById(type.concat('_latitude')).innerText,
-            longitude: element.getElementById(type.concat('_longitude')).innerText,
-            city: element.getElementById(type.concat('_city')).innerText,
-            state: element.getElementById(type.concat('_state')).innerText,
-            postal_code: element.getElementById(type.concat('_postal_code')).innerText,
-            country: element.getElementById(type.concat('_country')).innerText
-        };
-        return data;
     }
-
-    return {
-        initCordSearch: initCordSearch
-    };
-})();
+};

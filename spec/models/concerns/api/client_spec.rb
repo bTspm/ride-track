@@ -25,20 +25,6 @@ describe Api::Client do
     end
 
     context 'errors' do
-      let(:url) {nil}
-      it 'should raise an exception when url is empty' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
-    context 'errors' do
-      let(:auth_type) {nil}
-      it 'should raise an exception when auth_type is empty' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
-    context 'errors' do
       let(:auth_type) {'a'}
       it 'should raise an exception when auth_type is unknown' do
         expect {subject}.to raise_error Exceptions::RideTrack::NoSelectionError

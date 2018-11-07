@@ -16,3 +16,16 @@
     <% end %>
   </div>
 </div>
+
+<div class="row">
+  <div id="directions" style='width: 100%; height: 400px;'></div>
+</div>
+
+<script>
+    mapService.directions('<%= @price_estimates.request.origin.latitude %>',
+        '<%= @price_estimates.request.origin.longitude %>',
+        '<%= @price_estimates.request.destination.latitude %>',
+        '<%= @price_estimates.request.destination.longitude %>',
+        '#directions'
+    );
+</script>

@@ -2,8 +2,6 @@ module Storage::RideTrack
   class UberStore
 
     def get_price_estimates(request:)
-      raise ArgumentError.new('request is required') if request.blank?
-
       response = client.get_price_estimates(
           start_latitude: request.origin.latitude,
           start_longitude: request.origin.longitude,
@@ -15,8 +13,6 @@ module Storage::RideTrack
     end
 
     def get_products(request:)
-      raise ArgumentError.new('request is required') if request.blank?
-
       response = client.get_products(
           latitude: request.latitude,
           longitude: request.longitude,

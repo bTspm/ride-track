@@ -2,10 +2,9 @@ module Domains::RideTrack
   class PriceEstimateBuilder
 
     attr_reader :request
-    attr_accessor :estimates, :errors, :products
+    attr_accessor :estimates, :errors, :products, :filters, :fare_details
 
     def initialize(request:)
-      raise ArgumentError.new('request is required') if request.blank?
       @request = request
       @estimates = []
       @products = []
@@ -13,17 +12,14 @@ module Domains::RideTrack
     end
 
     def build
-      return if estimates.blank?
+      if estimates.blank?
+        add_no_ride_error
+        return
+      end
       assign_products_to_estimates
       sort_estimates_by_price
-    end
-
-    def filters
-      Domains::RideTrack::Filters.new(products: products)
-    end
-
-    def fare_details
-      Domains::RideTrack::FareDetails.new(products: products, estimates: estimates)
+      @filters = build_filters
+      @fare_details = build_fare_details
     end
 
     private
@@ -35,6 +31,20 @@ module Domains::RideTrack
     def assign_products_to_estimates
       products_hash = products.map { |u| [u.id, u] }.to_h
       estimates.map{|e| e.product = products_hash[e.product_id]}
+    end
+
+    def add_no_ride_error
+      errors << 'Error! No ride found at this moment for your destination!'
+    end
+
+    def build_filters
+      return if products.blank?
+      Domains::RideTrack::Filters.new(products: products)
+    end
+
+    def build_fare_details
+      return if estimates.blank? || products.blank?
+      Domains::RideTrack::FareDetails.new(products: products, estimates: estimates)
     end
 
   end

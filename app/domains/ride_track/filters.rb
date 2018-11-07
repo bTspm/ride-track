@@ -2,7 +2,6 @@ module Domains::RideTrack
   class Filters
 
     def initialize(products:)
-      raise ArgumentError.new('products are required') if products.blank?
       @products = products
     end
 

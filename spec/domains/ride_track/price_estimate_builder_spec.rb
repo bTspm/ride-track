@@ -19,13 +19,6 @@ describe Domains::RideTrack::PriceEstimateBuilder do
         expect(result.products).to eq []
       end
     end
-
-    context 'without request' do
-      let(:request) {nil}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
   end
 
   describe 'build' do
@@ -41,6 +34,8 @@ describe Domains::RideTrack::PriceEstimateBuilder do
       before :each do
         subject.estimates = estimates
         subject.products = products
+        allow(Domains::RideTrack::Filters).to receive(:new) {'Filters'}
+        allow(Domains::RideTrack::FareDetails).to receive(:new) {'Fare Details'}
       end
       it 'should sort the estimates' do
         subject.build
@@ -52,20 +47,16 @@ describe Domains::RideTrack::PriceEstimateBuilder do
         products = build_products.delete_if{|p| p.average_estimate.nil?}
         expect(subject.estimates.map(&:product).compact).to match_array products
       end
-    end
-  end
 
-  describe 'filters' do
-    it 'should return filters' do
-      allow(Domains::RideTrack::Filters).to receive(:new) {'Filters'}
-      expect(subject.filters).to eq 'Filters'
-    end
-  end
+      it 'should return filters' do
+        subject.build
+        expect(subject.filters).to eq 'Filters'
+      end
 
-  describe 'fare_details' do
-    it 'should return fare_details' do
-      allow(Domains::RideTrack::FareDetails).to receive(:new) {'Fare Details'}
-      expect(subject.fare_details).to eq 'Fare Details'
+      it 'should return fare_details' do
+        subject.build
+        expect(subject.fare_details).to eq 'Fare Details'
+      end
     end
   end
 
@@ -82,5 +73,4 @@ describe Domains::RideTrack::PriceEstimateBuilder do
      OpenStruct.new(id: '2', average_estimate: 100),
      OpenStruct.new(id: '4', average_estimate: nil)]
   end
-
 end

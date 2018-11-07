@@ -12,20 +12,6 @@ describe Domains::RideTrack::FareDetails do
         expect(subject).to be_kind_of Domains::RideTrack::FareDetails
       end
     end
-
-    context 'products nil' do
-      let(:products) {nil}
-      it 'should raise an error when products are empty' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
-    context 'estimates nil' do
-      let(:estimates) {nil}
-      it 'should raise an error when estimates are empty' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
   end
 
   describe '#distance_unit' do

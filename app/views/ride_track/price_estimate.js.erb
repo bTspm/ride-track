@@ -1,2 +1,9 @@
-$('#price_estimates').html("<%=j render 'ride_track/estimates' %>");
-$('#directions_map').html("<%=j render 'ride_track/directions', request: @price_estimates.request %>");
+var estimateContainer = $('#price_estimates')
+
+<% errors = @price_estimates.try(:errors) || [@error] %>
+
+<% if errors.try(:any?) %>
+  estimateContainer.empty().html("<%=j render 'ride_track/errors', errors: errors %>");
+<% elsif @price_estimates.try(:estimates).try(:any?) %>
+  estimateContainer.empty().html("<%=j render 'ride_track/estimates' %>");
+<% end %>

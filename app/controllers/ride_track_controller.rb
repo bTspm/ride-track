@@ -4,11 +4,11 @@ class RideTrackController < ApplicationController
   end
 
   def price_estimate
-    request = Domains::RideTrack::PriceEstimateRequest.new(
-        origin_details: estimate_origin_params,
-        destination_details: estimate_destination_params
-    )
-    @price_estimates = ride_track_service.get_price_estimates(request: request)
+    @price_estimates = ride_track_service.get_price_estimates(request: build_request)
+  rescue Exceptions::RideTrack::InvalidParameters => e
+    @error = e.message
+  rescue Exception => e
+    @error = e.message || 'Something went wrong, please try again.'
   end
 
   private
@@ -22,5 +22,12 @@ class RideTrackController < ApplicationController
   end
 
   ESTIMATE_PARAMS_LIST = [:latitude, :longitude, :city, :state, :postal_code, :country]
+
+  def build_request
+    Domains::RideTrack::PriceEstimateRequest.new(
+        origin_details: estimate_origin_params,
+        destination_details: estimate_destination_params
+    )
+  end
 
 end

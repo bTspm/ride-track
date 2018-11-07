@@ -2,7 +2,6 @@ module Domains::RideTrack
   class FareDetails
 
     def initialize(products:, estimates:)
-      raise ArgumentError.new('both products and estimates are required') if products.blank? || estimates.blank?
       @products = products
       @estimates = estimates
     end

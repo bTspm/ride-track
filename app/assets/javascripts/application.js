@@ -14,9 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require gmaps/google
-// = require geocomplete
 
 // Custom
 // = require ride_track
-// = require maps
+// = require map_service

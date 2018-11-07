@@ -14,13 +14,6 @@ describe Domains::Address do
         expect(result.longitude).to eq 'long'
       end
     end
-
-    context 'details nil' do
-      let(:details) {nil}
-      it 'should raise an error when details are empty' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
   end
 
 end

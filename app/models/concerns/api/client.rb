@@ -2,10 +2,6 @@ module Api
   class Client
 
     def initialize(url:, auth_type:, auth_options:, headers: {})
-      if url.blank? || auth_type.blank? || auth_options.blank?
-        raise ArgumentError.new('auth_options, url and auth_type are required')
-      end
-
       @url = url
       @auth_type = auth_type
       @auth_options = auth_options.with_indifferent_access

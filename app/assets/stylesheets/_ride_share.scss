@@ -6,25 +6,51 @@
   background-color: #ff00bf;
 }
 
-.card .ride-share {
-  background-color: #fdfdfd;
-  border-top: 2px solid #002663;
-  border-radius: 2px;
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.05);
-}
-
-.card-header {
-  background-color: #fdfdfd;
-  color: #002663;
-}
-
-.card-body + .card-body {
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-.page-footer {
-  padding-top: 35px;
-  border-top: 1px solid #ddd;
+.service {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 4px;
   text-align: center;
-  padding-bottom: 20px;
+  -webkit-box-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  border: 2px solid #e7e7e7;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.service1 i,
+.service1 h4 {
+  color: #42b7ca;
+}
+
+.service1:hover {
+  border: 2px solid #42b7ca;
+}
+
+.service2 i,
+.service2 h4 {
+  color: #425fca;
+}
+
+.service2:hover {
+  border: 2px solid #425fca;
+}
+
+.service3 i,
+.service3 h4 {
+  color: #9c42ca;
+}
+
+.service3:hover {
+  border: 2px solid #9c42ca;
+}
+
+//Center
+.service > * {
+  flex: 1 1 100%;
 }

@@ -2,7 +2,6 @@ module Domains::RideTrack::Uber
   class Product < Domains::RideTrack::BaseProduct
 
     def initialize(response:)
-      raise ArgumentError.new('response is required') if response.blank?
       @response = response
     end
 

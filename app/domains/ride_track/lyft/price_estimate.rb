@@ -2,7 +2,6 @@ module Domains::RideTrack::Lyft
   class PriceEstimate < Domains::RideTrack::BasePriceEstimate
 
     def initialize(response:)
-      raise ArgumentError.new('response is required') if response.blank?
       @response = response
     end
 
