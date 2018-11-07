@@ -7,20 +7,6 @@ describe Domains::RideTrack::Uber::Product do
 
   describe '#initialize' do
     subject {ins.new(response: response)}
-    context 'response nil' do
-      let(:response) {nil}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
-    context 'response empty' do
-      let(:response) {{}}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
     context 'direct properties and instances' do
       it 'should return instance with properties' do
         result = subject

@@ -11,13 +11,6 @@ describe Domains::RideTrack::Filters do
         expect(subject).to be_kind_of Domains::RideTrack::Filters
       end
     end
-
-    context 'products nil' do
-      let(:products) {nil}
-      it 'should raise an error when products are empty' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
   end
 
   describe '#capacities' do
