@@ -1,0 +1,6 @@
+.form-group.col-md-6
+  = label_tag label
+  %select.selectpicker.bs-select.form-control{'data-live-search' => 'true', id: "#{selector}"}
+    - countries.each do |c|
+      - selected = (c.code == default_country_code)
+      = currency_select_option(country: c, selected: selected)

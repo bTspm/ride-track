@@ -29,7 +29,7 @@ module Storage::RideTrack
 
     def validate_response(response:)
       return if response.success
-      raise Exceptions::RideTrack::ApiError.new(message: response.body[:message])
+      raise Exceptions::AppExceptions::ApiError.new(message: response.body[:message])
     end
 
     def build_price_estimates(response:)

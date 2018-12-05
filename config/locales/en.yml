@@ -44,3 +44,18 @@ en:
       estimate: Estimate
       ride_now: Ride Now
 
+  currency:
+    labels:
+      currency_name: Currency Name
+      country: Country
+      flag: Flag
+      code: Code
+      amount_from: Amount From
+      converted_to: Converted To
+      from: From
+      to: To
+    title:
+      header_text: Convert Currencies
+
+    buttons:
+      convert: Convert

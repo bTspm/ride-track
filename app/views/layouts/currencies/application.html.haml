@@ -1,0 +1,29 @@
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}
+    %title Currency Convert
+
+
+    %link{crossorigin: 'anonymous', href: 'https://use.fontawesome.com/releases/v5.2.0/css/all.css', integrity: 'sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ', rel: 'stylesheet'}
+    %script{crossorigin: "anonymous", integrity: "sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=", src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"}
+    %script{:src => "http://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"}
+    %link{crossorigin: 'anonymous', href: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css', integrity: 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO', rel: 'stylesheet'}
+    %script{crossorigin: 'anonymous', integrity: 'sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy', src: 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'}
+    %script{src: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore.js', type: 'text/javascript'}
+
+    %link{:crossorigin => "anonymous", :href => "https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css", :integrity => "sha256-D+ZpDJjhGxa5ffyQkuTvwii4AntFGBZa4jUhSpdlhjM=", :rel => "stylesheet"}/
+
+    -#Bootstrap Select
+    %link{:href => "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"}
+
+
+    %script{:crossorigin => "anonymous", :integrity => "sha256-o8aByMEvaNTcBsw94EfRLbBrJBI+c3mjna/j4LrfyJ8=", :src => "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"}
+
+
+    = stylesheet_link_tag    'currencies/application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'currencies/application', 'data-turbolinks-track': 'reload'
+  %body
+    = render partial: 'layouts/currencies/header'
+    = yield
+    = render partial: 'layouts/currencies/footer'

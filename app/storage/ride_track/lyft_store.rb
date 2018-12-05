@@ -2,8 +2,6 @@ module Storage::RideTrack
   class LyftStore
 
     def get_price_estimates(request:)
-      raise ArgumentError.new('request is required') if request.blank?
-
       response = client.get_price_estimates(
           start_latitude: request.origin.latitude,
           start_longitude: request.origin.longitude,
@@ -15,8 +13,6 @@ module Storage::RideTrack
     end
 
     def get_products(request:)
-      raise ArgumentError.new('request is required') if request.blank?
-
       response = client.get_products(
           latitude: request.latitude,
           longitude: request.longitude
@@ -33,7 +29,7 @@ module Storage::RideTrack
 
     def validate_response(response:)
       return if response.success
-      raise Exceptions::RideTrack::ApiError.new(message: response.body[:error_description])
+      raise Exceptions::AppExceptions::ApiError.new(message: response.body[:error_description])
     end
 
     def build_price_estimates(response:)

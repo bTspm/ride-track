@@ -18,5 +18,9 @@ module Services
       engine.lyft_store
     end
 
+    def currency_storage
+      engine.currency_store
+    end
+
   end
 end

@@ -6,5 +6,8 @@ module Services
       @ride_track_service ||= Services::RideTrackService.new
     end
 
+    def currency_service
+      @currency_service ||= Services::CurrencyService.new
+    end
   end
 end

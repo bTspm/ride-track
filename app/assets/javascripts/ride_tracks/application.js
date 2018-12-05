@@ -14,7 +14,3 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-
-// Custom
-// = require ride_track
-// = require map_service

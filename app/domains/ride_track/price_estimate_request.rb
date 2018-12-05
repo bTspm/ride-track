@@ -23,7 +23,7 @@ module Domains::RideTrack
                 nil
               end
       return if error.blank?
-      raise Exceptions::RideTrack::InvalidParameters.new(message: error)
+      raise Exceptions::Common::InvalidParameters.new(message: error)
     end
 
     def origin_valid?

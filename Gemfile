@@ -62,6 +62,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'execjs'
+gem 'haml'
 
 gem 'faraday', '~>  0.9.0'
 gem 'faraday_middleware'

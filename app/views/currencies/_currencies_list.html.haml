@@ -1,0 +1,20 @@
+%h2.text-center Available Countries
+.row
+  - break_countries(countries: countries).each do |list|
+    .col-md-6
+      .table-responsive
+        %table.table.table-striped.table-bordered{style: "width:100%"}
+          %thead
+            %tr
+              %th= I18n.t('currency.labels.flag')
+              %th= I18n.t('currency.labels.code')
+              %th= I18n.t('currency.labels.currency_name')
+              %th= I18n.t('currency.labels.country')
+          %tbody
+            - list.each do |c|
+              %tr
+                %td
+                  %spac{class: "flag-icon flag-icon-#{c.code}"}
+                %td= c.currency.code
+                %td= formatted_currency_name(currency_name: c.currency.name)
+                %td= c.name

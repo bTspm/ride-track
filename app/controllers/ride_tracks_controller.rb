@@ -1,5 +1,7 @@
 class RideTracksController < ApplicationController
 
+  layout 'ride_tracks/application'
+
   def home
   end
 
@@ -7,8 +9,6 @@ class RideTracksController < ApplicationController
     @price_estimates = ride_track_service.get_price_estimates(request: build_request)
   rescue Exceptions::RideTrack::InvalidParameters => e
     @error = e.message
-  rescue Exception => e
-    @error = e.message || 'Something went wrong, please try again.'
   end
 
   private
@@ -29,5 +29,4 @@ class RideTracksController < ApplicationController
         destination_details: estimate_destination_params
     )
   end
-
 end

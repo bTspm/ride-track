@@ -9,5 +9,9 @@ module Storage
       Storage::RideTrack::LyftStore.new
     end
 
+    def currency_store
+      Storage::Currency::CurrencyStore.new
+    end
+
   end
 end

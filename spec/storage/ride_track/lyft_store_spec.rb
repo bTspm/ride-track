@@ -19,13 +19,6 @@ describe Storage::RideTrack::LyftStore do
     let(:request) {double(origin: address, destination: address)}
     subject {store.get_price_estimates(request: request)}
 
-    context 'request nil' do
-      let(:request) {nil}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
-
     context 'response - success' do
       it 'should return estimates' do
         expect(subject).to match_array ['Estimate']
@@ -35,7 +28,7 @@ describe Storage::RideTrack::LyftStore do
     context 'response - error' do
       let(:response) {double(success: false, body: {error_description: nil})}
       it 'should raise an error response is not success' do
-        expect {subject}.to raise_error Exceptions::RideTrack::ApiError
+        expect {subject}.to raise_error Exceptions::AppExceptions::ApiError
       end
     end
   end
@@ -43,13 +36,6 @@ describe Storage::RideTrack::LyftStore do
   describe '#get_products' do
     let(:request) {address}
     subject {store.get_products(request: request)}
-
-    context 'request nil' do
-      let(:request) {nil}
-      it 'should raise an error' do
-        expect {subject}.to raise_error ArgumentError
-      end
-    end
 
     context 'response - success' do
       it 'should return products' do
@@ -60,7 +46,7 @@ describe Storage::RideTrack::LyftStore do
     context 'response - error' do
       let(:response) {double(success: false, body: {error_description: nil})}
       it 'should raise an error response is not success' do
-        expect {subject}.to raise_error Exceptions::RideTrack::ApiError
+        expect {subject}.to raise_error Exceptions::AppExceptions::ApiError
       end
     end
   end

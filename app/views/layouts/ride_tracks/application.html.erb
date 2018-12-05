@@ -13,14 +13,14 @@
 
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js??sensor=false&key=AIzaSyDMFnGX9AS6gI8BpPRXPxBW6wFOQVG93L4&libraries=places" async defer></script>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'ride_tracks/application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'ride_tracks/application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <%= render partial: 'layouts/header'  %>
+  <%= render partial: 'layouts/ride_tracks/header'  %>
     <%= yield %>
-  <%= render partial: 'layouts/footer'  %>
+  <%= render partial: 'layouts/ride_tracks/footer'  %>
   </body>
 
 </html>

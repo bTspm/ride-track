@@ -15,10 +15,7 @@ module RideShareHelper
   end
 
   def cost_with_currency(cost:, currency:)
-    content_tag :span do
-      concat content_tag(:h4, cost)
-      concat currency
-    end
+    content_tag :h4, "#{cost}  #{currency}"
   end
 
   def categories(product:)

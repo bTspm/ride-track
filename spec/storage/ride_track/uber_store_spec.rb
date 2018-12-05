@@ -28,7 +28,7 @@ describe Storage::RideTrack::UberStore do
     context 'response - error' do
       let(:response) {double(success: false, body: {message: nil})}
       it 'should raise an error response is not success' do
-        expect {subject}.to raise_error Exceptions::RideTrack::ApiError
+        expect {subject}.to raise_error Exceptions::AppExceptions::ApiError
       end
     end
   end
@@ -46,7 +46,7 @@ describe Storage::RideTrack::UberStore do
     context 'response - error' do
       let(:response) {double(success: false, body: {message: nil})}
       it 'should raise an error response is not success' do
-        expect {subject}.to raise_error Exceptions::RideTrack::ApiError
+        expect {subject}.to raise_error Exceptions::AppExceptions::ApiError
       end
     end
   end

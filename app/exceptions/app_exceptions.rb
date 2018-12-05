@@ -1,5 +1,5 @@
 module Exceptions
-  module RideTrack
+  module AppExceptions
 
     class ApiError < StandardError
       attr_reader :message

@@ -7,4 +7,10 @@ Rails.application.routes.draw do
     get :home
     get :price_estimate
   end
+
+  namespace :currencies do
+    get :home
+    get :convert
+    get :history
+  end
 end

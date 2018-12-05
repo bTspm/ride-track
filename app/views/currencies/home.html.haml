@@ -1,0 +1,50 @@
+%section
+  .jumbotron.search-section
+    .container.my-4
+
+      #convert-header-block
+        %u#from-currency-name
+        .between-text to
+        %u#to-currency-name
+      %hr
+
+      .form-row
+        = render partial: 'currencies/currency_input',
+            locals: {input_selector: 'from-amount',
+                     addon_selector: 'from-currency-addon',
+                     label: I18n.t('currency.labels.amount_from')}
+
+        = render partial: 'currencies/currency_input',
+            locals: {input_selector: 'to-amount',
+                     addon_selector: 'to-currency-addon',
+                     label: I18n.t('currency.labels.converted_to')}
+
+      .form-row
+        .form-row.col-md-6
+          = render partial: 'currencies/currency_dropdown',
+            locals: {selector: 'from-currency',
+                     label: I18n.t('currency.labels.from'),
+                     countries: @countries,
+                     default_country_code: Constants::Currency::DEFAULT_FROM_COUNTRY}
+
+          = render partial: 'currencies/currency_dropdown',
+            locals: {selector: 'to-currency',
+                     label: I18n.t('currency.labels.to'),
+                     countries: @countries,
+                     default_country_code: Constants::Currency::DEFAULT_TO_COUNTRY}
+
+        = render partial: 'currencies/currency_details'
+
+      .py-3
+        .alert.alert-info.text-center
+          This website use a free currency exchange service updated on top of the hour.
+          Credits to:
+          =link_to 'CurrencyConverterApi', 'http://currencyconverterapi.com/', target: '_blank', rel: 'noopener'
+
+%section
+  .container
+    .row.align-items-center
+      %canvas#currency-history{height: "50px", width: "100%"}
+
+:javascript
+  currency.init()

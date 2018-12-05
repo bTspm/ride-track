@@ -1,7 +1,7 @@
 module Api
   class Client
 
-    def initialize(url:, auth_type:, auth_options:, headers: {})
+    def initialize(url:, auth_type: NO_AUTH, auth_options: {}, headers: {})
       @url = url
       @auth_type = auth_type
       @auth_options = auth_options.with_indifferent_access
@@ -31,6 +31,7 @@ module Api
     BASIC = 'Basic'.freeze
     BASIC_AUTH = 'Basic Auth'.freeze
     AUTHORIZATION = [BEARER, TOKEN, BASIC]
+    NO_AUTH = 'no_auth'.freeze
 
     CACHE_IN_SECONDS = 60
 
@@ -55,6 +56,8 @@ module Api
           conn.authorization auth_type, auth_options[:token]
         when BASIC_AUTH
           conn.basic_auth auth_options[:username], auth_options[:password]
+        when NO_AUTH
+          conn
         else
           raise Exceptions::RideTrack::NoSelectionError.new(selection: auth_type)
         end

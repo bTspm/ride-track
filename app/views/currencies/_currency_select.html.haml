@@ -1,0 +1,3 @@
+%select_tag.selectpicker.form-control{'data-live-search' => 'true'}
+  - @currencies.each do |c|
+    %option{'data-icon': "flag-icon flag-icon-#{c.code}", 'data-subtext': " - #{c.name}"}= "#{c.currency_name.split.map(&:capitalize).join(' ')} (#{c.currency_id})"
