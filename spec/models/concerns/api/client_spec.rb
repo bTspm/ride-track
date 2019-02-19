@@ -27,7 +27,7 @@ describe Api::Client do
     context 'errors' do
       let(:auth_type) {'a'}
       it 'should raise an exception when auth_type is unknown' do
-        expect {subject}.to raise_error Exceptions::RideTrack::NoSelectionError
+        expect {subject}.to raise_error Exceptions::AppExceptions::NoSelectionError
       end
     end
 
