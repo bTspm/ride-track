@@ -17,7 +17,7 @@ module Services
     def price_estimates(store:)
       estimate_builder.products += store.get_products(request: estimate_builder.request.origin)
       estimate_builder.estimates += store.get_price_estimates(request: estimate_builder.request)
-    rescue Exceptions::RideTrack::ApiError, Exception => e
+    rescue Exceptions::AppExceptions::ApiError, Exception => e
       estimate_builder.errors << e.message
     end
 

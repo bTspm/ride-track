@@ -60,7 +60,7 @@ module Domains::RideTrack
       elsif distance_unit == Constants::KM
         distance * 0.6
       else
-        raise Exceptions::Common::NoSelectionError.new(selection: distance_unit)
+        raise Exceptions::AppExceptions::NoSelectionError.new(selection: distance_unit)
       end
     end
 

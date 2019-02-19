@@ -94,7 +94,7 @@ describe Domains::RideTrack::BasePriceEstimate do
       context 'invalid unit' do
         let(:distance_unit) {nil}
         it 'should raise an error' do
-          expect {subject.distance_in_unit}.to raise_error Exceptions::RideTrack::NoSelectionError
+          expect {subject.distance_in_unit}.to raise_error Exceptions::AppExceptions::NoSelectionError
         end
       end
     end

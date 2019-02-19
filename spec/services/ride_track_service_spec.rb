@@ -6,7 +6,15 @@ describe Services::RideTrackService do
   let(:lyft_storage) {double}
   let(:uber_storage) {double}
 
-  let(:est_builder) {build_est_builder}
+  let(:est_builder) do
+    OpenStruct.new(
+        estimates: [],
+        errors: [],
+        products: [],
+        build: 'Estimates Built',
+        request: OpenStruct.new(origin: 'a')
+    )
+  end
   let(:products) {['Products']}
   let(:estimates) {['Estimates']}
 
@@ -33,7 +41,7 @@ describe Services::RideTrackService do
 
     context 'with errors' do
       it 'should return builder with errors' do
-        exception = Exceptions::RideTrack::ApiError.new(message: 'test error')
+        exception = Exceptions::AppExceptions::ApiError.new(message: 'test error')
         allow(uber_storage).to receive(:get_products).and_raise exception
 
         expect(subject).to eq est_builder
@@ -43,15 +51,4 @@ describe Services::RideTrackService do
   end
 
   private
-
-  def build_est_builder
-    OpenStruct.new(
-        estimates: [],
-        errors: [],
-        products: [],
-        build: 'Estimates Built',
-        request: OpenStruct.new(origin: 'a'),
-
-    )
-  end
 end

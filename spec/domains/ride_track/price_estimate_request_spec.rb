@@ -26,14 +26,14 @@ describe Domains::RideTrack::PriceEstimateRequest do
       context 'origin details are empty' do
         let(:origin_details) {{}}
         it 'should raise an error' do
-          expect {subject}.to raise_error Exceptions::RideTrack::InvalidParameters
+          expect {subject}.to raise_error Exceptions::AppExceptions::InvalidParameters
         end
       end
 
       context 'destination details are empty' do
         let(:destination_details) {{}}
         it 'should raise an error' do
-          expect {subject}.to raise_error Exceptions::RideTrack::InvalidParameters
+          expect {subject}.to raise_error Exceptions::AppExceptions::InvalidParameters
         end
       end
 
@@ -41,7 +41,7 @@ describe Domains::RideTrack::PriceEstimateRequest do
         let(:destination_details) {{}}
         let(:origin_details) {{}}
         it 'should raise an error' do
-          expect {subject}.to raise_error Exceptions::RideTrack::InvalidParameters
+          expect {subject}.to raise_error Exceptions::AppExceptions::InvalidParameters
         end
       end
     end
