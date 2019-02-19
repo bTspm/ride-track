@@ -59,7 +59,7 @@ module Api
         when NO_AUTH
           conn
         else
-          raise Exceptions::RideTrack::NoSelectionError.new(selection: auth_type)
+          raise Exceptions::AppExceptions::NoSelectionError.new(selection: auth_type)
         end
 
         # Request
