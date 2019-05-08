@@ -3,12 +3,18 @@ module Domains::Currency
 
     attr_reader :code,
                 :name,
-                :symbol
+                :symbol,
+                :countries
 
-    def initialize(code:, name:, symbol:)
-      @code = code
-      @name = name
-      @symbol = symbol
+    def initialize(details = {})
+      @code = details[:code]
+      @name = details[:name]
+      @symbol = details[:symbol]
+    end
+
+    def countries=(countries)
+      @countries = countries
     end
   end
 end
+

@@ -67,3 +67,5 @@ gem 'haml'
 gem 'faraday', '~>  0.9.0'
 gem 'faraday_middleware'
 gem 'webmock'
+
+gem 'btspm'

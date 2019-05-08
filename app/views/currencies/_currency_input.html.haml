@@ -1,6 +1,19 @@
-.form-group.col-md-6
-  = label_tag label
-  .input-group.mb-3
-    %input.form-control.input-currency{placeholder: label, id: input_selector}
-    .input-group-append
-      %span.input-group-text.font-weight-bold{id: addon_selector}
+.form-row
+  .form-group.col-md-6
+    = label_tag I18n.t('currency.labels.amount_from')
+    .input-group.mb-3
+      = text_field_tag('', exchange_rate.from_rate, {placeholder: I18n.t('currency.labels.amount_from'),
+                                                     id: 'from-amount',
+                                                     class: 'form-control input-currency'})
+      .input-group-append
+        %span.input-group-text.font-weight-bold= exchange_rate.from
+
+  .form-group.col-md-6
+    = label_tag I18n.t('currency.labels.converted_to')
+    .input-group.mb-3
+      = text_field_tag('', exchange_rate.to_rate, {placeholder: I18n.t('currency.labels.converted_to'),
+                                                   id: 'to-amount',
+                                                   class: 'form-control input-currency'})
+      .input-group-append
+        %span.input-group-text.font-weight-bold= exchange_rate.to
+

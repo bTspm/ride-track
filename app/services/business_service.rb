@@ -22,5 +22,10 @@ module Services
       engine.currency_store
     end
 
+    def ip_storage
+      engine.ip_store
+    end
+
   end
 end
+

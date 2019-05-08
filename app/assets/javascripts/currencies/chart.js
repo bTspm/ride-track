@@ -10,7 +10,7 @@ var chart = {
             data: {
                 labels: data.dates,
                 datasets: [{
-                    label: data.request.from_currency_code.concat(' to ').concat(data.request.to_currency_code),
+                    label: data.label,
                     backgroundColor: 'rgb(21, 91, 148)',
                     borderColor: 'rgb(21, 91, 148)',
                     data: data.rates,

@@ -2,26 +2,31 @@ class CurrenciesController < ApplicationController
   layout 'currencies/application'
 
   def home
-    @countries = currency_service.get_countries_with_currencies
+    @exchange_rate = currency_service.get_exchange_rate_from_ip('71.232.211.223')
+    @currencies    = currency_service.get_currencies
+    @histories     = currency_service.get_currency_histories(
+      from: @exchange_rate.from_currency.code,
+      to:   @exchange_rate.to_currency.code
+    )
   end
 
   def convert
-    convert = currency_service.get_exchange_rate(
-        to_currency_code: params[:to_currency_code],
-        from_currency_code: params[:from_currency_code]
-    )
-    render json: convert.to_json
+    @currencies    = currency_service.get_currencies
+    @exchange_rate = currency_service.get_exchange_rate(from: params[:from], to: params[:to])
+    @histories     = currency_service.get_currency_histories(from: params[:from], to: params[:to])
   end
 
   def history
-    history = currency_service.get_history(request: history_request)
-    render json: history.to_json
+    @histories = currency_service.get_currency_histories(from: params[:from], to: params[:to])
+    @histories_data = {
+      rates: @histories.map(&:rate),
+      dates: @histories.map(&:date),
+      label: "#{params[:from]} to #{params[:to]}"
+    }
   end
-
-  def history_request
-    Domains::Currency::HistoryRequest.new(
-        to_currency_code: params[:to_currency_code],
-        from_currency_code: params[:from_currency_code]
-    )
+  
+  def currencies_list
+    @currencies = currency_service.get_currencies
   end
 end
+

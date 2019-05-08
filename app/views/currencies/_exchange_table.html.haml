@@ -1,0 +1,29 @@
+%h3.text-center
+  Conversion Tables
+.row
+  .col-md
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th.text-right= exchange_rate.from
+          %th= exchange_rate.to
+      %tbody
+        - (1000..10000).step(1000) do |number|
+          %tr
+            %td.text-right= "#{number} #{exchange_rate.from}"
+            %td.text-left= "#{(number * exchange_rate.to_rate).round(5)} #{exchange_rate.to}"
+
+  .col-md
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th.text-right= exchange_rate.to
+          %th= exchange_rate.from
+      %tbody
+        - (1000..10000).step(1000) do |number|
+          %tr
+            %td.text-right= "#{number} #{exchange_rate.to}"
+            %td.text-left= "#{(number / exchange_rate.to_rate).round(5)} #{exchange_rate.from}"
+
+
+

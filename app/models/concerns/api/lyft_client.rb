@@ -13,7 +13,7 @@ module Api
       url = url + "start_lng=#{start_longitude}&"
       url = url + "end_lat=#{end_latitude}&"
       url = url + "end_lng=#{end_longitude}"
-      _get(url: url, cache_key: cache_key)
+      get(url: url, cache_key: cache_key)
     end
 
     def get_products(latitude:, longitude:)
@@ -22,7 +22,7 @@ module Api
       url = VERSION + '/ridetypes?'
       url = url + "lat=#{latitude}&"
       url = url + "lng=#{longitude}"
-      _get(url: url, cache_key: cache_key)
+      get(url: url, cache_key: cache_key)
     end
 
     private
@@ -32,10 +32,10 @@ module Api
     VERSION = 'v1'.freeze
 
     def access_token
-      client_for_token._post(
+      client_for_token.post(
           url: AUTH_PATH,
           cache_key: 'lyft-key',
-          expire_time: 86400,
+          expire_time: one_day,
           request: auth_params
       ).body[:access_token]
     end

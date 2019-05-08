@@ -5,19 +5,16 @@ default: &default
 
 
 development:
-  <<: *default
-  database: ride-track_development
+  adapter: sqlite3
   pool: 5
-  username: postgres
-  password: 1234
-  host: localhost
+  timeout: 5000
+  database: db/development.sqlite3
 
 test:
-  <<: *default
-  database: ride-track_test
-  host: localhost
-  username: postgres
-  password: 1234
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/test.sqlite3
 
 production:
   <<: *default

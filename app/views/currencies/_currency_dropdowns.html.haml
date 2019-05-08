@@ -1,0 +1,15 @@
+.form-row
+  .form-group.col-md-6
+    = label_tag  I18n.t('currency.labels.from')
+    %select.selectpicker.bs-select.form-control{'data-live-search': 'true', id: 'from-currency'}
+      - currencies.each do |c|
+        - selected = c.code.downcase == from.downcase
+        = currency_select_option(currency: c, selected: selected)
+
+  .form-group.col-md-6
+    = label_tag I18n.t('currency.labels.to')
+    %select.selectpicker.bs-select.currency-dropdown.form-control{'data-live-search': 'true', id: 'to-currency'}
+      - currencies.each do |c|
+        - selected = c.code.downcase == to.downcase
+        = currency_select_option(currency: c, selected: selected)
+

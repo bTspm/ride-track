@@ -23,8 +23,8 @@
 }
 
 .input-currency {
-  height: 65px;
-  font-size: 25px;
+  height: 4rem;
+  font-size: 1.5rem;
 }
 
 .search-section {
@@ -36,11 +36,11 @@
   color: white;
 }
 
-#convert-header-block {
+#exchange-header-block {
   text-align:center;
-  font-size: 32px;
+  font-size: 2rem;
   .between-text {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   #from-currency-name, #to-currency-name, .between-text {
     display:inline;
@@ -49,7 +49,7 @@
 
 #exchange-rate-block{
   text-align:center;
-  font-size: 25px;
+  font-size: 1.5rem;
   #from-currency-code, #to-currency-code, .between-text, #exchange-rate {
     display:inline;
   }

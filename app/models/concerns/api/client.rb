@@ -1,22 +1,23 @@
 module Api
   class Client
+    include CacheTime
 
     def initialize(url:, auth_type: NO_AUTH, auth_options: {}, headers: {})
-      @url = url
-      @auth_type = auth_type
+      @url          = url
+      @auth_type    = auth_type
       @auth_options = auth_options.with_indifferent_access
-      @headers = headers.with_indifferent_access
-      @conn = build_connection
+      @headers      = headers.with_indifferent_access
+      @conn         = build_connection
     end
 
-    def _get(url:, cache_key:, expire_time: CACHE_IN_SECONDS)
+    def get(url:, cache_key:, expire_time: one_minute)
       response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
         conn.get url
       end
       parse_response(response: response)
     end
 
-    def _post(url:, cache_key:, expire_time: CACHE_IN_SECONDS, request:)
+    def post(url:, cache_key:, expire_time: one_minute, request:)
       response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
         conn.post url, request
       end
@@ -26,23 +27,21 @@ module Api
     private
 
     #auth types
-    BEARER = 'Bearer'.freeze
-    TOKEN = 'Token'.freeze
-    BASIC = 'Basic'.freeze
-    BASIC_AUTH = 'Basic Auth'.freeze
+    BEARER        = 'Bearer'.freeze
+    TOKEN         = 'Token'.freeze
+    BASIC         = 'Basic'.freeze
+    BASIC_AUTH    = 'Basic Auth'.freeze
     AUTHORIZATION = [BEARER, TOKEN, BASIC]
-    NO_AUTH = 'no_auth'.freeze
-
-    CACHE_IN_SECONDS = 60
+    NO_AUTH       = 'no_auth'.freeze
 
     attr_reader :conn, :url, :auth_type, :auth_options, :headers
 
     def parse_response(response:)
       Api::Response.new(
-          body: response.body,
-          status: response.status,
-          headers: response.headers,
-          success: response.success?
+        body:    response.body,
+        status:  response.status,
+        headers: response.headers,
+        success: response.success?
       )
     end
 
@@ -75,3 +74,4 @@ module Api
 
   end
 end
+

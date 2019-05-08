@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     get :home
     get :convert
     get :history
+    get :currencies_list
   end
 end
