@@ -2,7 +2,7 @@ class CurrenciesController < ApplicationController
   layout 'currencies/application'
 
   def home
-    @exchange_rate = currency_service.get_exchange_rate_from_ip('71.232.211.223')
+    @exchange_rate = currency_service.get_exchange_rate_from_ip(request.ip)
     @currencies    = currency_service.get_currencies
     @histories     = currency_service.get_currency_histories(
       from: @exchange_rate.from_currency.code,
