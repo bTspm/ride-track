@@ -8,3 +8,4 @@ module Domains::Currency
     end
   end
 end
+
