@@ -1,6 +1,9 @@
-#exchange-header-block
-  %u#from-currency-name= exchange_rate.from_currency.name
-  .between-text to
-  %u#to-currency-name= exchange_rate.to_currency.name
-%hr.mb-4
+%h4.my-4
+  #exchange-header-block
+    #from-currency-name= exchange_rate.from_currency.name
+    .between-text to
+    #to-currency-name= exchange_rate.to_currency.name
+%hr
+-#= render partial: 'exchange_details', locals: {exchange_rate: exchange_rate}
+
 

@@ -10,8 +10,8 @@
       %tbody
         - (1000..10000).step(1000) do |number|
           %tr
-            %td.text-right= "#{number} #{exchange_rate.from}"
-            %td.text-left= "#{(number * exchange_rate.to_rate).round(5)} #{exchange_rate.to}"
+            %td.text-right= exchange_rate.from_currency_base(number)
+            %td.text-left= exchange_rate.from_currency_calc_amount(number)
 
   .col-md
     %table.table.table-bordered
@@ -22,8 +22,8 @@
       %tbody
         - (1000..10000).step(1000) do |number|
           %tr
-            %td.text-right= "#{number} #{exchange_rate.to}"
-            %td.text-left= "#{(number / exchange_rate.to_rate).round(5)} #{exchange_rate.from}"
+            %td.text-right= exchange_rate.to_currency_base(number)
+            %td.text-left= exchange_rate.to_currency_calc_amount(number)
 
 
 

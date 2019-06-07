@@ -14,7 +14,7 @@ describe Api::UberClient do
     it 'should return estimates' do
       allow_any_instance_of(
           Api::UberClient
-      ).to receive(:_get).with(url: estimate_url, cache_key: 'uber-1+2+3+4') {'Estimates'}
+      ).to receive(:get).with(url: estimate_url, cache_key: 'uber-1+2+3+4') {'Estimates'}
 
       expect(
           subject.get_price_estimates(start_latitude: 1, start_longitude: 2, end_latitude: 3, end_longitude: 4)
@@ -26,7 +26,7 @@ describe Api::UberClient do
     it 'should return products' do
       allow_any_instance_of(
           Api::UberClient
-      ).to receive(:_get).with(url: product_url, cache_key: 'uber-1+2') {'Products'}
+      ).to receive(:get).with(url: product_url, cache_key: 'uber-1+2') {'Products'}
 
       expect(subject.get_products(latitude: 1, longitude: 2)).to eq 'Products'
     end

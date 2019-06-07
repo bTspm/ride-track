@@ -2,31 +2,34 @@ class CurrenciesController < ApplicationController
   layout 'currencies/application'
 
   def home
-    @exchange_rate = currency_service.get_exchange_rate_from_ip(request.ip)
-    @currencies    = currency_service.get_currencies
-    @histories     = currency_service.get_currency_histories(
-      from: @exchange_rate.from_currency.code,
-      to:   @exchange_rate.to_currency.code
-    )
+    # @currencies = currency_service.get_currencies_from_ip(request.ip)
+    @currencies = currency_service.get_currencies_from_ip(request.ip)
+    redirect_to action: :convert, from: @currencies[:from], to: @currencies[:to]
   end
 
   def convert
-    @currencies    = currency_service.get_currencies
-    @exchange_rate = currency_service.get_exchange_rate(from: params[:from], to: params[:to])
-    @histories     = currency_service.get_currency_histories(from: params[:from], to: params[:to])
+    @currencies         = present(currency_service.get_currencies, ::Presenters::Currency::CurrenciesPresenter)
+    @exchange_rate      = present(_exchange_rate, ::Presenters::Currency::ExchangeRatePresenter)
+    @history_response   = present(_history_response, ::Presenters::Currency::HistoryResponsePresenter)
+    @popular_currencies = present(_popular_currencies, ::Presenters::Currency::ExchangeRatePresenter)
   end
 
-  def history
-    @histories = currency_service.get_currency_histories(from: params[:from], to: params[:to])
-    @histories_data = {
-      rates: @histories.map(&:rate),
-      dates: @histories.map(&:date),
-      label: "#{params[:from]} to #{params[:to]}"
-    }
+  def list
+    @currencies = present(currency_service.get_currencies, ::Presenters::Currency::CurrenciesPresenter)
   end
-  
-  def currencies_list
-    @currencies = currency_service.get_currencies
+
+  private
+
+  def _exchange_rate
+    currency_service.get_exchange_rate_with_currency_details(from: params[:from], to: params[:to])
+  end
+
+  def _history_response
+    currency_service.get_currency_histories(from: params[:from], to: params[:to])
+  end
+
+  def _popular_currencies
+    currency_service.get_popular_currency_exchanges(params[:from])
   end
 end
 

@@ -46,16 +46,15 @@ en:
 
   currency:
     labels:
-      currency_name: Currency Name
-      country: Country
-      flag: Flag
-      code: Code
       amount_from: Amount From
+      code: Code
       converted_to: Converted To
+      country: Country
+      currency_name: Currency Name
+      flag: Flag
       from: From
       to: To
     title:
       header_text: Convert Currencies
-
     buttons:
       convert: Convert

@@ -40,7 +40,7 @@ describe Api::Client do
     end
     context 'response success' do
       it 'should return response with success' do
-        result = subject._get(url: 'get_url', cache_key: 'a', expire_time: 0)
+        result = subject.get(url: 'get_url', cache_key: 'a', expire_time: 0)
         expect(result).to be_kind_of Api::Response
         expect(result.body).to eq({'test' => 'Success'})
         expect(result.success).to be true
@@ -52,7 +52,7 @@ describe Api::Client do
     context 'response failure' do
       let(:get_response) {build_get_response(test: 'failure')}
       it 'should return response with failure' do
-        result = subject._get(url: 'get_url', cache_key: 'a', expire_time: 0)
+        result = subject.get(url: 'get_url', cache_key: 'a', expire_time: 0)
         expect(result).to be_kind_of Api::Response
         expect(result.body).to eq({'test' => 'Failure'})
         expect(result.success).to be false
@@ -69,7 +69,7 @@ describe Api::Client do
     end
     context 'response success' do
       it 'should return response with success' do
-        result = subject._post(url: 'post_url', cache_key: 'a', expire_time: 0, request: request)
+        result = subject.post(url: 'post_url', cache_key: 'a', expire_time: 0, request: request)
         expect(result).to be_kind_of Api::Response
         expect(result.body).to eq({'test' => 'Success'})
         expect(result.success).to be true
@@ -81,7 +81,7 @@ describe Api::Client do
     context 'response failure' do
       let(:post_response) {build_post_response(test: 'failure')}
       it 'should return response with failure' do
-        result = subject._post(url: 'post_url', cache_key: 'a', expire_time: 0, request: request)
+        result = subject.post(url: 'post_url', cache_key: 'a', expire_time: 0, request: request)
         expect(result).to be_kind_of Api::Response
         expect(result.body).to eq({'test' => 'Failure'})
         expect(result.success).to be false

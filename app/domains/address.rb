@@ -1,6 +1,8 @@
 module Domains
   class Address
 
+    US_COUNTRY_CODES = %w(us usa)
+
     attr_reader :latitude,
                 :longitude,
                 :city,
@@ -22,7 +24,7 @@ module Domains
     end
 
     def is_us?
-      country_code.downcase == 'us' || country_code.downcase == 'usa'
+      US_COUNTRY_CODES.include? country_code.downcase
     end
   end
 end

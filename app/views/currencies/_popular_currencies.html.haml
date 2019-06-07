@@ -1,0 +1,21 @@
+%h3.text-center
+  Popular Currencies
+%table.table.table-bordered
+  %thead
+    %tr
+      %th
+      -Constants::Currency::POPULAR_CURRENCIES.each do |currency|
+        %th
+          %span{class: "currency-flag currency-flag-#{currency.downcase}"}
+          %span= currency
+  %tbody
+    %tr
+      %td= "from #{params[:from]}"
+      -Constants::Currency::POPULAR_CURRENCIES.each do |currency|
+        %td
+          = popular_currencies.rate_by_currency(currency, params[:from])
+    %tr
+      %td= "to #{params[:from]}"
+      -Constants::Currency::POPULAR_CURRENCIES.each do |currency|
+        %td
+          = popular_currencies.rate_by_currency(params[:from], currency)

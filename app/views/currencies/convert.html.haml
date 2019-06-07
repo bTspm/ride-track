@@ -1,0 +1,31 @@
+%section
+  .jumbotron.search-section
+    .container
+      = render partial: 'currency_header', locals: {exchange_rate: @exchange_rate}
+
+      = render partial: 'currency_input', locals: {exchange_rate: @exchange_rate, currencies: @currencies}
+
+      = render partial: 'currencies/credits'
+
+%section
+  .container
+    = render partial: 'history', locals: {history_response: @history_response}
+
+%section
+  .jumbotron{style: '#f5f8fd'}
+    .container
+      = render partial: 'popular_currencies', locals: {popular_currencies: @popular_currencies}
+
+%section
+  .container
+    .row
+      .col-md-7
+        = render partial: 'exchange_table', locals: {exchange_rate: @exchange_rate}
+
+      .col-md-5
+        = render partial: 'currencies/currency_details', locals: {exchange_rate: @exchange_rate}
+
+:javascript
+  var currency = Currency.init();
+  currency.bindEvents();
+

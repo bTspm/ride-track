@@ -1,30 +1,37 @@
-- data = {rates: histories.map(&:rate), dates:  histories.map(&:date), label: "#{from} to #{to}"}
-.container
-  .row.mb-5
-    .col-md-8
-      %h3.text-center
-        History Graph
-      %canvas#history-graph
-    .col-md-4
-      %h3.text-center
-        History Tables
-      %table.table.table-bordered
-        %tbody
-          %tr
-            %td Highest
-            %td= histories.sort_by { |history| history.rate }.last.rate
-          %tr
-            %td Lowest
-            %td= histories.sort_by { |history| history.rate }.first.rate
-          %tr
-            %td Average
-            %td= (histories.sum(&:rate) / histories.length).round(5)
-          %tr
-            %td Change
-            %td= (histories.sort_by { |history| history.rate }.first.rate - histories.sort_by { |history| history.rate }.last.rate).round(5)
-          %tr
-            %td= "% Change over#{histories.size} days"
-            %td= ((histories.sort_by { |history| history.rate }.first.rate) / (histories.sort_by { |history| history.rate }.last.rate)) * 100
+.row.mb-5
+  .col-md-8
+    %h3.text-center
+      History Graph
+    %canvas#history-graph
+  .col-md-4
+    %h3.text-center
+      History Tables
+    %table.table.table-bordered
+      %tbody
+        %tr
+          %td Highest
+          %td= history_response.histories.highest
+        %tr
+          %td Lowest
+          %td= history_response.histories.lowest
+        %tr
+          %td Average
+          %td= history_response.histories.average
+        %tr
+          %td Change
+          %td= history_response.histories.change_difference
+        %tr
+          %td % Change
+          %td= history_response.histories.change_percent
+        %tr
+          %td Start Date
+          %td= history_response.histories.start_date
+        %tr
+          %td End Date
+          %td= history_response.histories.end_date
+        %tr
+          %td Total Days
+          %td= history_response.histories.length
 
 :javascript
-  chart.init(JSON.parse('#{raw(data.to_json)}'), 'history-graph');
+  chart.init(JSON.parse('#{raw(history_response.chart_data)}'), 'history-graph');

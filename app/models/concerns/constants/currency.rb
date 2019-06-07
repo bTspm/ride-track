@@ -3,7 +3,9 @@ module Constants
     DEFAULT_TO   = 'GB'
     DEFAULT_FROM = 'US'
 
-    DEFAULT_FROM_AND_TO = [DEFAULT_FROM, DEFAULT_TO]
+    DEFAULT_FROM_AND_TO = {from: DEFAULT_FROM, to: DEFAULT_TO}
+
+    POPULAR_CURRENCIES = %w(USD INR EUR GBP JPY)
   end
 end
 

@@ -24,6 +24,12 @@ module Storage::Currency
       build_histories(response)
     end
 
+    def get_exchange_rate_on_pairs(pairs)
+      response = client.get_exchange_rate_on_pairs(pairs)
+      validate_response(response)
+      build_exchange_rate_on_pairs(response)
+    end
+
     private
 
     def client
@@ -53,8 +59,13 @@ module Storage::Currency
     end
 
     def build_histories(response)
-      response.body[:results].first.last[:val].map do |k, v|
-        Domains::Currency::History.new({date: k, rate: v})
+      Domains::Currency::HistoryResponse.new(response.body[:results].values.first)
+    end
+
+    def build_exchange_rate_on_pairs(response)
+      return if response.body[:results].blank?
+      response.body[:results].values.map do |result|
+        Domains::Currency::ExchangeRate.new(result)
       end
     end
   end

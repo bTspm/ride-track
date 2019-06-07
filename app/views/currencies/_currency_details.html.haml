@@ -1,43 +1,12 @@
 %h3.text-center
   Currency Details
--#.card
--#  .card-header From Currency
--#  .card-body
--#    %dl
--#      %dt Currency
--#      %dd= exchange_rate.from_currency.name
--#      %dt Code
--#      %dd= exchange_rate.from_currency.code
--#      %dt Icon
--#      %dd{class: "currency-flag currency-flag-#{exchange_rate.from_currency.code.try(:downcase)}"}
--#      %dt Symbol
--#      %dd= exchange_rate.from_currency.symbol
--#      %dt Countries
--#      %dd= exchange_rate.from_currency&.countries&.map(&:name)&.join(', ') || ''
--#
--#.card
--#  .card-header From Currency
--#  .card-body
--#    %dl
--#      %dt Currency
--#      %dd= exchange_rate.to_currency.name
--#      %dt Code
--#      %dd= exchange_rate.to_currency.code
--#      %dt Icon
--#      %dd{class: "currency-flag currency-flag-#{exchange_rate.to_currency.code.try(:downcase)}"}
--#      %dt Symbol
--#      %dd= exchange_rate.to_currency.symbol
--#      %dt Countries
--#      %dd= exchange_rate.to_currency&.countries&.map(&:name)&.join(', ') || ''
-
-
 
 %table.table.table-bordered
   %thead
     %tr
-      %th.col-md-2
-      %th.col-md-5 From Currency
-      %th.col-md-5 To Currency
+      %th.col-md-2.col-sm-2
+      %th.col-md-5.col-sm-5 From Currency
+      %th.col-md-5.col-sm-5 To Currency
   %tbody
     %tr
       %td Currency
@@ -62,25 +31,3 @@
       %td= exchange_rate.from_currency&.countries&.map(&:name)&.join(', ') || ''
       %td= exchange_rate.to_currency&.countries&.map(&:name)&.join(', ') || ''
 
--#%table.table.table-bordered
--#  %thead
--#    %tr
--#      %th.col-md-2
--#      %th To Currency
--#  %tbody
--#    %tr
--#      %td Currency
--#      %td= exchange_rate.to_currency.name
--#    %tr
--#      %td Code
--#      %td= exchange_rate.to_currency.code
--#    %tr
--#      %td Icon
--#      %td
--#        %span{class: "currency-flag currency-flag-#{exchange_rate.to_currency.code.try(:downcase)}"}
--#    %tr
--#      %td Symbol
--#      %td= exchange_rate.to_currency.symbol
--#    %tr
--#      %td Countries
--#      %td= exchange_rate.to_currency&.countries&.map(&:name)&.join(', ') || ''

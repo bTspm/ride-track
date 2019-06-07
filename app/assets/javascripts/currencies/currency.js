@@ -1,128 +1,118 @@
-var currency = {
+var Currency = {
     init: function () {
         this.fromCurrency = $("#from-currency");
         this.toCurrency = $("#to-currency");
-
-        this.fromCurrencyCode = $("#from-currency-code");
-        this.toCurrencyCode = $("#to-currency-code");
-
-        this.fromCurrencyAddon = $("#from-currency-addon");
-        this.toCurrencyAddon = $("#to-currency-addon");
-
-        this.fromCurrencyName = $("#from-currency-name");
-        this.toCurrencyName = $("#to-currency-name");
 
         this.fromAmount = $("#from-amount");
         this.toAmount = $("#to-amount");
 
         this.exchangeRate = $("#exchange-rate");
 
-        currency.convertAndHistory();
-        currency.bindEvents();
+        this.selectDropdown =  $(".select2");
+
+        return this;
     },
 
     bindEvents: function () {
-        currency.bindSelectChange(currency.fromCurrency);
-        currency.bindSelectChange(currency.toCurrency);
+        Currency.bindSelectChange(Currency.fromCurrency);
+        Currency.bindSelectChange(Currency.toCurrency);
 
-        currency.bindInputChange(currency.fromAmount);
-        currency.bindInputChange(currency.toAmount);
+        Currency.bindInputChange(Currency.fromAmount);
+        Currency.bindInputChange(Currency.toAmount);
+
+        Currency.initCurrencyDropdown();
+    },
+
+    initCurrencyDropdown: function(){
+        function formatCurrency (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            return $(
+                '<span><i class="currency-flag currency-flag-' + state.element.value.toLowerCase() + '"></i> ' + state.text + '</span>'
+            );
+        }
+
+        Currency.selectDropdown.select2({
+            width: 'resolve',
+            templateResult: formatCurrency,
+            templateSelection: formatCurrency,
+        });
+    },
+
+    selectFormatCurrency: function(currency){
+        return $('<span><i class="currency-flag currency-flag-' +
+            currency.element.value.toLowerCase() +
+            '"></i> ' + currency.text + '</span>')
     },
 
     bindInputChange: function (selector) {
         selector.on("change paste keyup", function () {
-            currency.inputExchangeRateCurrency(this);
+            Currency.inputExchangeRateCurrency(this);
         });
     },
 
     bindSelectChange: function (selector) {
         selector.on("change", function (e) {
-            currency.convertAndHistory();
+            Currency.convert();
         });
     },
 
-    convertData: function () {
+    currencyParams: function () {
         return {
-            to_currency_code: currency.toCurrency.val(),
-            from_currency_code: currency.fromCurrency.val()
+            to: Currency.toCurrency.val(),
+            from: Currency.fromCurrency.val()
         };
     },
 
-    convertAndHistory: function () {
-        var data = currency.convertData();
-        if (data.to_currency_code === data.from_currency_code) {
+    convert: function () {
+        var data = Currency.currencyParams();
+        if (data.to === data.from) {
             return;
         }
-        currency.convert(data);
-        currency.history(data);
+
+        // window.location.href = '/currencies/convert'.concat('?from=').concat(data.from).concat('&to=').concat(data.to);
+
+        // common.get("/currencies/convert", data);
+
+        // $.ajax({
+        //     url: '/currencies/convert',
+        //     type: "GET",
+        //     dataType: "script",
+        //     data: data
+        // })
     },
 
-    convert: function (data) {
-        common.get("/currencies/convert", data, function (successData) {
-                currency.convertSuccessResponse(successData);
-            }
-        );
-    },
-
-    history: function(data){
-        common.get("/currencies/history", data, function (successData) {
-            chart.init(successData, 'currency-history');
-            }
-        );
-    },
-
-    convertSuccessResponse: function (data) {
-        var fromCurrencyCodeValue = String(data.from_rate)
-            .concat(" ")
-            .concat(data.from_currency_code);
-        currency.fromCurrencyCode.text(fromCurrencyCodeValue);
-        currency.toCurrencyCode.text(data.to_currency_code);
-
-        currency.fromCurrencyAddon.text(data.from_currency_code);
-        currency.toCurrencyAddon.text(data.to_currency_code);
-
-        currency.fromAmount.val(data.from_rate);
-        currency.toAmount.val(data.to_rate);
-
-        currency.exchangeRate.text(data.to_rate);
-
-        currency.setCurrencyName();
-    },
-
-    setCurrencyName: function () {
-        currency.fromCurrencyName.text(
-            $("#from-currency option:selected").attr("currency_name")
-        );
-        currency.toCurrencyName.text(
-            $("#to-currency option:selected").attr("currency_name")
-        );
+    history: function(from, to){
+        var data = {from: from, to: to};
+        common.get("/currencies/history", data);
     },
 
     inputExchangeRateCurrency(element) {
-        var exchangeRateValue = currency.exchangeRate.text();
-        var fromAmountValue = currency.fromAmount.val();
-        var toAmountValue = currency.toAmount.val();
+        var exchangeRateValue = Currency.exchangeRate.text();
+        var fromAmountValue = Currency.fromAmount.val();
+        var toAmountValue = Currency.toAmount.val();
 
         if (
-            exchangeRateValue.length === 0 ||
             fromAmountValue.length === 0 ||
             toAmountValue.length === 0
         ) {
-            currency.emptyInputFields();
+            Currency.emptyInputFields();
             return;
         }
 
         if (element.id === "from-amount") {
             var toCalcAmount = Number(fromAmountValue * exchangeRateValue).toFixed(6);
-            currency.toAmount.val(toCalcAmount);
+            Currency.toAmount.val(toCalcAmount);
         } else {
             var fromCalcAmount = Number(toAmountValue / exchangeRateValue).toFixed(6);
-            currency.fromAmount.val(fromCalcAmount);
+            Currency.fromAmount.val(fromCalcAmount);
         }
     },
 
     emptyInputFields: function () {
-        currency.fromAmount.val("");
-        currency.toAmount.val("");
+        Currency.fromAmount.val("");
+        Currency.toAmount.val("");
     }
 };
+
