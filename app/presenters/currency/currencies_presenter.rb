@@ -19,11 +19,9 @@ module Presenters::Currency
     end
 
     class Enum < Btspm::Presenters::EnumPresenter
-
-      def groups
-        a = nil
+      def grouped_and_sorted_by_code
+        data_object.group_by{ |currency| currency.code.first }.sort
       end
-
     end
   end
 end

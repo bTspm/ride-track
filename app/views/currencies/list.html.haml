@@ -1,27 +1,22 @@
 .jumbotron.search-section.text-center
   %h3 Currencies List
 .container.py-5
-  %table.table.table-bordered
-    %thead
-      %tr
-        %th Name
-        %th Code
-        %th Icon
-        %th Symbol
-        %th Convert
-    %tbody
-      - @currencies.in_groups(2).each do |currencies_chuck|
-        - currencies_chuck.each do |currency|
-          %tr
-            %td= currency.name
-            %td= currency.code
-            %td
-              %span{class: "currency-flag currency-flag-#{currency.code.try(:downcase)}"}
-            %td= currency.symbol
-            %td
-              -Constants::Currency::POPULAR_CURRENCIES.each do |c|
-                %span
-                  - next if c.downcase == currency.code.try(:downcase)
-                  = link_to currencies_convert_path(from: currency.code, to: c) do
-                    %i{class: "currency-flag currency-flag-#{c}"}
+
+  - @currencies.grouped_and_sorted_by_code.each do |alphabet, currencies|
+    .currency-alphabet-break
+      %span= alphabet
+    - currencies.each_slice(4).each do |currencies_slice|
+      .row
+        -currencies_slice.each do |currency|
+          .col-md-3
+            .currency-list.m-4.p-3
+              %h5
+                %span.text-left= "#{currency.code} - "
+                %span.text-right{class: "currency-flag currency-flag-#{currency.code.try(:downcase)}"}
+              .ellipsis.mb-2= currency.name
+              -Constants::Currency::POPULAR_CURRENCIES.each do |currency_code|
+                %span.mr-2
+                  - next if currency_code.downcase == currency.code.try(:downcase)
+                  = link_to currencies_convert_path(from: currency.code, to: currency_code) do
+                    %i{class: "pr-2 currency-flag currency-flag-#{currency_code}"}
 

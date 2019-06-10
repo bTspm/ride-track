@@ -59,12 +59,33 @@
   }
 }
 
+.currency-list{
+  background: #F0F8FF;
+  border-radius: 0.25rem;
+  -webkit-box-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  border: 0.125rem solid #e7e7e7;
+}
 
-.exc {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -moz-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translateX(-50%) translateY(-50%);
-  transform: translateX(-50%) translateY(-50%);
+.ellipsis {
+  width: 15.625rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.currency-alphabet-break {
+  display: block;
+  height: 0.625rem;
+  border-bottom: solid 0.0625rem #000;
+  text-align: center;
+}
+
+.currency-alphabet-break span {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 0.625rem;
 }
