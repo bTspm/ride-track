@@ -1,118 +1,92 @@
 var Currency = {
-    init: function () {
-        this.fromCurrency = $("#from-currency");
-        this.toCurrency = $("#to-currency");
-
-        this.fromAmount = $("#from-amount");
-        this.toAmount = $("#to-amount");
-
-        this.exchangeRate = $("#exchange-rate");
-
-        this.selectDropdown =  $(".select2");
-
+    init: function() {
+        this.elements = {
+            fromAmount: $("#from-amount"),
+            fromCurrency: $("#from-currency"),
+            toCurrency: $("#to-currency"),
+            toAmount: $("#to-amount"),
+            exchangeRate: $("#exchange-rate"),
+            selectDropdown: $(".select2"),
+            currencyInput: $(".currency-input")
+        };
         return this;
     },
 
-    bindEvents: function () {
-        Currency.bindSelectChange(Currency.fromCurrency);
-        Currency.bindSelectChange(Currency.toCurrency);
-
-        Currency.bindInputChange(Currency.fromAmount);
-        Currency.bindInputChange(Currency.toAmount);
-
+    bindEvents: function() {
+        Currency.bindInputChange();
         Currency.initCurrencyDropdown();
     },
 
-    initCurrencyDropdown: function(){
-        function formatCurrency (state) {
-            if (!state.id) {
-                return state.text;
-            }
-            return $(
-                '<span><i class="currency-flag currency-flag-' + state.element.value.toLowerCase() + '"></i> ' + state.text + '</span>'
-            );
-        }
-
-        Currency.selectDropdown.select2({
-            width: 'resolve',
-            templateResult: formatCurrency,
-            templateSelection: formatCurrency,
-        });
-    },
-
-    selectFormatCurrency: function(currency){
-        return $('<span><i class="currency-flag currency-flag-' +
-            currency.element.value.toLowerCase() +
-            '"></i> ' + currency.text + '</span>')
-    },
-
-    bindInputChange: function (selector) {
-        selector.on("change paste keyup", function () {
+    bindInputChange: function() {
+        Currency.elements.currencyInput.on("change paste keyup", function() {
+            debugger;
             Currency.inputExchangeRateCurrency(this);
         });
     },
 
-    bindSelectChange: function (selector) {
-        selector.on("change", function (e) {
-            Currency.convert();
+    emptyInputFields: function() {
+        Currency.elements.fromAmount.val("0");
+        Currency.elements.toAmount.val("0");
+    },
+
+    initCurrencyDropdown: function() {
+        Currency.elements.selectDropdown.select2({
+            width: "resolve",
+            templateResult: Currency.selectFormatCurrency,
+            templateSelection: Currency.selectFormatCurrency
         });
     },
 
-    currencyParams: function () {
-        return {
-            to: Currency.toCurrency.val(),
-            from: Currency.fromCurrency.val()
-        };
-    },
-
-    convert: function () {
-        var data = Currency.currencyParams();
-        if (data.to === data.from) {
-            return;
-        }
-
-        // window.location.href = '/currencies/convert'.concat('?from=').concat(data.from).concat('&to=').concat(data.to);
-
-        // common.get("/currencies/convert", data);
-
-        // $.ajax({
-        //     url: '/currencies/convert',
-        //     type: "GET",
-        //     dataType: "script",
-        //     data: data
-        // })
-    },
-
-    history: function(from, to){
-        var data = {from: from, to: to};
-        common.get("/currencies/history", data);
-    },
-
     inputExchangeRateCurrency(element) {
-        var exchangeRateValue = Currency.exchangeRate.text();
-        var fromAmountValue = Currency.fromAmount.val();
-        var toAmountValue = Currency.toAmount.val();
+        var fromAmountValue = Currency.elements.fromAmount.val();
+        var toAmountValue = Currency.elements.toAmount.val();
 
-        if (
-            fromAmountValue.length === 0 ||
-            toAmountValue.length === 0
-        ) {
+        if (fromAmountValue.length === 0 || toAmountValue.length === 0) {
             Currency.emptyInputFields();
             return;
         }
 
+        Currency.updateExchangeRateValue(
+            Currency.elements.fromCurrency.val(),
+            Currency.elements.toCurrency.val()
+        );
+        var exchangeRateValue = Currency.elements.exchangeRate.text();
+
         if (element.id === "from-amount") {
             var toCalcAmount = Number(fromAmountValue * exchangeRateValue).toFixed(6);
-            Currency.toAmount.val(toCalcAmount);
+            Currency.elements.toAmount.val(toCalcAmount);
         } else {
             var fromCalcAmount = Number(toAmountValue / exchangeRateValue).toFixed(6);
-            Currency.fromAmount.val(fromCalcAmount);
+            Currency.elements.fromAmount.val(fromCalcAmount);
         }
     },
 
-    emptyInputFields: function () {
-        Currency.fromAmount.val("");
-        Currency.toAmount.val("");
-    }
-};
+    selectFormatCurrency: function (currency) {
+        if (!currency.id) {
+            return currency.text;
+        }
+        return $(
+            '<span><i class="currency-flag currency-flag-' +
+            currency.element.value.toLowerCase() +
+            '"></i> ' +
+            currency.text +
+            "</span>"
+        );
+    },
 
+    updateExchangeRateValue: function(from, to) {
+        if (to === from) {
+            return 1;
+        }
+
+        $.ajax({
+            url: "/currencies/exchange_rate",
+            type: "GET",
+            dataType: "JSON",
+            data: { from: from, to: to },
+            success: function(data) {
+                Currency.elements.exchangeRate.text(data);
+            }
+        });
+    },
+};

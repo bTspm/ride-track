@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :currencies do
     get :home
     get :convert
+    get :exchange_rate
     get :list
   end
 end

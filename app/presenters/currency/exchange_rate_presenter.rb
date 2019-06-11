@@ -33,7 +33,7 @@ module Presenters::Currency
       end
 
       def to_rounded_rate
-        (to_rate.to_f).round(5)
+        (rate.to_f).round(5)
       end
 
       private
@@ -46,7 +46,7 @@ module Presenters::Currency
     class Enum < Btspm::Presenters::EnumPresenter
       def rate_by_currency(to_currency, from_currency)
         return 1 if to_currency.downcase == from_currency.downcase
-        self.find{ |c| c.from == from_currency && c.to == to_currency }.to_rate
+        self.find{ |c| c.from == from_currency && c.to == to_currency }.rate
       end
     end
   end
