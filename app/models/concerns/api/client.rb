@@ -10,14 +10,14 @@ module Api
       @conn         = build_connection
     end
 
-    def get(url:, cache_key:, expire_time: one_minute)
+    def get(url:, cache_key:, expire_time: Api::CacheTime::ONE_MINUTE)
       response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
         conn.get url
       end
       parse_response(response: response)
     end
 
-    def post(url:, cache_key:, expire_time: one_minute, request:)
+    def post(url:, cache_key:, expire_time: Api::CacheTime::ONE_MINUTE, request:)
       response = Rails.cache.fetch("#{cache_key}", expires_in: expire_time) do
         conn.post url, request
       end

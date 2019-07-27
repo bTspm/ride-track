@@ -24,6 +24,7 @@ module Domains
     end
 
     def is_us?
+      return false if country_code.blank?
       US_COUNTRY_CODES.include? country_code.downcase
     end
   end

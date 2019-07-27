@@ -2,17 +2,30 @@ require 'spec_helper'
 
 describe Storage::Allocator do
 
-  subject {Storage::Allocator.new}
+  subject(:allocator) {Storage::Allocator.new}
 
-  describe 'uber_store' do
-    it 'should initialize uber_store' do
-      expect(subject.uber_store).to be_kind_of Storage::RideTrack::UberStore
-    end
+  describe '#currency_store' do
+    subject { allocator.currency_store }
+
+    it { is_expected.to be_kind_of Storage::CurrencyStore }
   end
 
-  describe 'lyft_store' do
-    it 'should initialize lyft_store' do
-      expect(subject.lyft_store).to be_kind_of Storage::RideTrack::LyftStore
-    end
+  describe '#ip_store' do
+    subject { allocator.ip_store }
+
+    it { is_expected.to be_kind_of Storage::IpStore }
+  end
+
+  describe '#lyft_store' do
+    subject { allocator.lyft_store }
+
+    it { is_expected.to be_kind_of Storage::RideTrack::LyftStore }
+  end
+
+  describe '#uber_store' do
+    subject { allocator.uber_store }
+
+    it { is_expected.to be_kind_of Storage::RideTrack::UberStore }
   end
 end
+

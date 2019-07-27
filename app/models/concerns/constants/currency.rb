@@ -1,7 +1,7 @@
 module Constants
   module Currency
-    DEFAULT_TO   = 'GB'
-    DEFAULT_FROM = 'US'
+    DEFAULT_TO   = 'GBP'
+    DEFAULT_FROM = 'USD'
 
     DEFAULT_FROM_AND_TO = {from: DEFAULT_FROM, to: DEFAULT_TO}
 

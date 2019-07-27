@@ -10,14 +10,7 @@ module Services
       @engine ||= ::Storage::Allocator.new
     end
 
-    def uber_storage
-      engine.uber_store
-    end
-
-    def lyft_storage
-      engine.lyft_store
-    end
-
+    #Stores
     def currency_storage
       engine.currency_store
     end
@@ -26,6 +19,13 @@ module Services
       engine.ip_store
     end
 
+    def lyft_storage
+      engine.lyft_store
+    end
+
+    def uber_storage
+      engine.uber_store
+    end
   end
 end
 

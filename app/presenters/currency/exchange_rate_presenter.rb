@@ -16,10 +16,6 @@ module Presenters::Currency
         "#{(number * to_rounded_rate).round(5)} #{to}"
       end
 
-      def from_rounded_rate
-        (from_rate.to_f).round(5)
-      end
-
       def to_currency
         _currency_presenter(data_object.to_currency)
       end
@@ -44,9 +40,9 @@ module Presenters::Currency
     end
 
     class Enum < Btspm::Presenters::EnumPresenter
-      def rate_by_currency(to_currency, from_currency)
-        return 1 if to_currency.downcase == from_currency.downcase
-        self.find{ |c| c.from == from_currency && c.to == to_currency }.rate
+      def rate_by_currency(to_code:, from_code:)
+        return 1 if to_code.downcase == from_code.downcase
+        data_object.find{ |exchange_rate| exchange_rate.from == from_code && exchange_rate.to == to_code }&.rate
       end
     end
   end

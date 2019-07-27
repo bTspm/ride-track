@@ -3,7 +3,7 @@
     .form-group.col-md-6
       = label_tag I18n.t('currency.labels.amount_from')
       .input-group.mb-3
-        = text_field_tag('', exchange_rate.from_rate, {placeholder: I18n.t('currency.labels.amount_from'),
+        = text_field_tag('', 1, {placeholder: I18n.t('currency.labels.amount_from'),
                                                        id: 'from-amount',
                                                        class: 'form-control currency-input'})
         .input-group-append

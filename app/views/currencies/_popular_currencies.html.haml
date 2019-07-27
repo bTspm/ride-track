@@ -13,9 +13,10 @@
       %td= "from #{params[:from]}"
       -Constants::Currency::POPULAR_CURRENCIES.each do |currency|
         %td
-          = popular_currencies.rate_by_currency(currency, params[:from])
+          = popular_currencies.rate_by_currency(to_code: currency, from_code: params[:from])
     %tr
       %td= "to #{params[:from]}"
       -Constants::Currency::POPULAR_CURRENCIES.each do |currency|
         %td
-          = popular_currencies.rate_by_currency(params[:from], currency)
+          = popular_currencies.rate_by_currency(to_code: params[:from], from_code: currency)
+

@@ -1,16 +1,19 @@
 module Api
   class IpClient < Client
     def initialize
-      super(url: URL)
+      super(url: _url)
     end
 
     def get_details(ip)
-      get(url: ip, cache_key: ip, expire_time: one_day)
+      url = "#{ip}?fields=8421376"
+      get(url: url, cache_key: ip)
     end
 
     private
 
-    URL = 'http://ip-api.com/json/'.freeze
+    def _url
+      'http://ip-api.com/json/'
+    end
   end
 end
 

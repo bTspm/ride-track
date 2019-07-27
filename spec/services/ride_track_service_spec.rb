@@ -49,6 +49,5 @@ describe Services::RideTrackService do
       end
     end
   end
-
-  private
 end
+

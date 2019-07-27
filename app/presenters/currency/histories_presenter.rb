@@ -9,7 +9,7 @@ module Presenters::Currency
       end
 
       def readable_date
-        DateTime.strptime(date, '%Y-%m-%d').strftime("%B %d, %Y")
+        date.strftime('%B %d, %Y')
       end
     end
 
@@ -52,10 +52,6 @@ module Presenters::Currency
 
       def end_date
         sort_by_date.last.readable_date
-      end
-
-      def chart_data
-        {rates: sort_by_date.map(&:rate), dates:  sort_by_date.map(&:date), label: "#{from} to #{to}"}.to_json
       end
     end
   end

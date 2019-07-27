@@ -1,19 +1,19 @@
 module Storage
   class Allocator
-    def uber_store
-      Storage::RideTrack::UberStore.new
+    def currency_store
+      Storage::CurrencyStore.new
+    end
+
+    def ip_store
+      Storage::IpStore.new
     end
 
     def lyft_store
       Storage::RideTrack::LyftStore.new
     end
 
-    def currency_store
-      Storage::Currency::CurrencyStore.new
-    end
-
-    def ip_store
-      Storage::IpStore.new
+    def uber_store
+      Storage::RideTrack::UberStore.new
     end
   end
 end

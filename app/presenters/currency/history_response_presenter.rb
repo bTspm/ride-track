@@ -9,7 +9,11 @@ module Presenters::Currency
       end
 
       def chart_data
-        {rates: histories.map(&:rate), dates:  histories.map(&:date), label: _label}.to_json
+        {
+          rates: histories.sort_by_date.map(&:rate),
+          dates: histories.sort_by_date.map(&:date),
+          label: _label
+        }.to_json
       end
 
       private

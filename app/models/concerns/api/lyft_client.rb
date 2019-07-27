@@ -35,7 +35,7 @@ module Api
       client_for_token.post(
           url: AUTH_PATH,
           cache_key: 'lyft-key',
-          expire_time: one_day,
+          expire_time: Api::CacheTime::ONE_DAY,
           request: auth_params
       ).body[:access_token]
     end

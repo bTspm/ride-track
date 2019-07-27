@@ -6,11 +6,17 @@ describe Services do
     include Services
   end
 
-  subject {DummyClass.new}
+  subject(:services) {DummyClass.new}
 
-  describe 'ride_track_service' do
-    it 'should initialize service' do
-      expect(subject.ride_track_service).to be_kind_of Services::RideTrackService
-    end
+  describe '#currency_service' do
+    subject { services.currency_service }
+
+    it { is_expected.to be_kind_of Services::CurrencyService }
+  end
+
+  describe '#ride_track_service' do
+    subject { services.ride_track_service }
+
+    it { is_expected.to be_kind_of Services::RideTrackService }
   end
 end
