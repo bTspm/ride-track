@@ -1,0 +1,51 @@
+[
+  {
+    "id": "USD_INR",
+    "val": 70.489807,
+    "to": "INR",
+    "fr": "USD"
+  },
+  {
+    "id": "INR_USD",
+    "val": 0.014188,
+    "to": "USD",
+    "fr": "INR"
+  },
+  {
+    "id": "USD_EUR",
+    "val": 0.89876,
+    "to": "EUR",
+    "fr": "USD"
+  },
+  {
+    "id": "EUR_USD",
+    "val": 1.112898,
+    "to": "USD",
+    "fr": "EUR"
+  },
+  {
+    "id": "USD_GBP",
+    "val": 0.82326,
+    "to": "GBP",
+    "fr": "USD"
+  },
+  {
+    "id": "GBP_USD",
+    "val": 1.214956,
+    "to": "USD",
+    "fr": "GBP"
+  },
+  {
+    "id": "USD_JPY",
+    "val": 105.969709,
+    "to": "JPY",
+    "fr": "USD"
+  },
+  {
+    "id": "JPY_USD",
+    "val": 0.009437,
+    "to": "USD",
+    "fr": "JPY"
+  }
+]
+
