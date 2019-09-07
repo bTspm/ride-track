@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Domains::IpDetail do
+describe Domains::Ip::IpDetail do
 
   let(:address) { double }
   let(:as) { double }
@@ -27,7 +27,7 @@ describe Domains::IpDetail do
         expect(Domains::Address).to receive(:new) { address }
 
         result = ip_detail
-        expect(result).to be_kind_of Domains::IpDetail
+        expect(result).to be_kind_of Domains::Ip::IpDetail
         expect(result.address).to eq address
         expect(result.as).to eq as
         expect(result.ip).to eq query

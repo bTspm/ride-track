@@ -23,8 +23,9 @@ describe Services::CurrencyService do
   end
 
   describe '#get_currencies_from_ip' do
+    let(:address) { double('address', currency_code: currency_code) }
     let(:currency_code) { 'INR' }
-    let(:ip_detail) { double('ip_detail', currency_code: currency_code) }
+    let(:ip_detail) { double('ip_detail', address: address) }
     let(:ip) { double('ip') }
 
     subject { service.get_currencies_from_ip(ip) }
