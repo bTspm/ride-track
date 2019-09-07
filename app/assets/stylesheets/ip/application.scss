@@ -10,35 +10,35 @@ body {
 }
 
 .card {
-  box-shadow: 0 2px 10px rgba(0, 0, 0, .075);
-  margin-bottom: 30px;
+  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, .075);
+  margin-bottom: 1.875rem;
 
   .card-header {
     font-size: 1.5rem;
     background-color: rgba(0, 0, 0, 0);
-    border-top: 4px solid #0ea0ff;
+    border-top: 0.25rem solid #0ea0ff;
   }
 }
 
 .quality-detail {
   .danger-left {
-    border-left: 4px solid #dc3545;
+    border-left: 0.25rem solid #dc3545;
   }
 
   .info-left {
-    border-left: 4px solid #17a2b8;
+    border-left: 0.25rem solid #17a2b8;
   }
 
   .primary-left {
-    border-left: 4px solid #007bff;
+    border-left: 0.25rem solid #007bff;
   }
 
   .success-left {
-    border-left: 4px solid #28a745;
+    border-left: 0.25rem solid #28a745;
   }
 
   .warning-left {
-    border-left: 4px solid #ffc107;
+    border-left: 0.25rem solid #ffc107;
   }
 }
 
@@ -53,6 +53,6 @@ body {
 }
 
 .speed-info-underline {
-  border-bottom: 2px solid #07a6cd;
+  border-bottom: 0.125rem solid #07a6cd;
 }
 
