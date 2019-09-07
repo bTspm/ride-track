@@ -1,0 +1,10 @@
+.card
+  .card-header
+    %spam= fontawesome_icon('fas fa-info-circle', 'IP Details', {options: 'text-info'})
+  .card-body
+    %p
+      %span An Internet Protocol address (IP address) is a numerical label assigned to each device connected to a computer network that uses the Internet Protocol for communication...
+      %span
+        =link_to fontawesome_icon('fas fa-external-link-alt', 'more on Wikipedia'),
+                 'https://en.wikipedia.org/wiki/IP_address',
+                 class: "btn-sm btn-primary", target: '_blank'

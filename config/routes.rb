@@ -14,5 +14,11 @@ Rails.application.routes.draw do
     get :exchange_rate
     get :list
   end
+
+  namespace :ip do
+    get :home
+    get :ip_search
+    get :speed_test
+  end
 end
 

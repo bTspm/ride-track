@@ -1,0 +1,14 @@
+= render partial: 'ip_search_form', locals: {ip_input: params[:ip_input]}
+
+.container
+  .section
+    .row
+      .col
+        = render partial: 'ip_details', locals: {ip_detail: @ip_detail}
+        = render partial: 'ip_info'
+      .col
+        = render partial: 'ip_quality_details', locals: {quality_detail: @quality_detail}
+
+
+= render partial: 'ip_geo_information', locals: {address: @ip_detail.address}
+

@@ -1,0 +1,18 @@
+.container
+  .section
+    .card
+      .card-header
+        = fontawesome_icon('fas fa-exclamation-circle text-danger', 'Input Error')
+      .card-body.text-center
+        .alert.alert-danger
+          %h4.alert-heading Error!
+          %span Invalid IP or Domain Entered
+          %h2
+            %span.badge.badge-danger= " #{query}"
+          %hr/
+          %p.mb-0 Sorry, an error has occurred!
+        %div.mb-3
+          Enter IP Information
+
+        = render partial: 'ip_search_form'
+

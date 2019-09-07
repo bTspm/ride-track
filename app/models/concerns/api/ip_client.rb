@@ -4,9 +4,9 @@ module Api
       super(url: _url)
     end
 
-    def get_details(ip)
-      url = "#{ip}?fields=8421376"
-      get(url: url, cache_key: ip)
+    def get_details(ip_or_domain)
+      url = "#{ip_or_domain}?fields=12845055"
+      get(url: url, cache_key: ip_or_domain, expire_time: ONE_DAY)
     end
 
     private

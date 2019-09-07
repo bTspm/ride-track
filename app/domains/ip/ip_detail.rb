@@ -1,10 +1,12 @@
-module Domains
+module Domains::Ip
   class IpDetail
     attr_reader :address,
                 :as,
-                :currency_code,
-                :ip,
+                :as_name,
+                :hostname,
                 :isp,
+                :ip,
+                :mobile,
                 :organization,
                 :timezone
 
@@ -12,10 +14,12 @@ module Domains
       @response = (response || {}).with_indifferent_access
       @address = build_address
       @as = response[:as]
-      @currency_code = response[:currency]
+      @as_name = response[:asname]
+      @hostname = response[:reverse]&.presence || response[:query]
       @isp = response[:isp]
-      @organization = response[:org]
       @ip = response[:query]
+      @mobile = response[:mobile]
+      @organization = response[:org]
       @timezone = response[:timezone]
     end
 
@@ -31,9 +35,11 @@ module Domains
         state_name: @response[:regionName],
         country_code: @response[:countryCode],
         country_name: @response[:country],
+        currency_code: @response[:currency],
+        time_zone: @response[:timezone],
         zip_code: @response[:zip]
       }
-      Address.new(details: address_details)
+      ::Domains::Address.new(details: address_details)
     end
   end
 end

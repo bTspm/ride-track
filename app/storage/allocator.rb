@@ -8,6 +8,10 @@ module Storage
       Storage::IpStore.new
     end
 
+    def ip_quality_store
+      Storage::IpQualityStore.new
+    end
+
     def lyft_store
       Storage::RideTrack::LyftStore.new
     end

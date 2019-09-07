@@ -1,0 +1,25 @@
+.container
+  .section
+    .card
+      .card-header
+        = fontawesome_icon('fas fa-exclamation-circle text-danger', 'General Error')
+      .card-body.text-center
+        .alert.alert-danger
+          %h4.alert-heading Error!
+          %span Error Occurred
+          %h5
+            %span.badge.badge-danger= " #{error_message}"
+          %hr/
+          %p.mb-0 Sorry, an error has occurred!
+        %div.mb-3
+          %spam
+            Please try again
+          %span
+            %h3
+              %span.badge.badge-success
+                =link_to fontawesome_icon('fas fa-link', 'Click here for IP Details'),
+                ip_ip_search_path(ip_input: client_ip),
+                class: 'text-white'
+
+        = render partial: 'ip_search_form'
+

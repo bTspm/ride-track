@@ -1,0 +1,33 @@
+.card
+  .card-header
+    %spam= fontawesome_icon('fas fa-table', 'IP Details')
+    %spam
+      %i= " - #{params[:ip_input]}"
+  .card-body
+    %table.table.table-hover.table-responsive
+      %tbody
+        %tr
+          %td IP Address:
+          %td
+            %b= ip_detail.ip
+        %tr
+          %td AS:
+          %td
+            %b= ip_detail.as
+        %tr
+          %td ISP:
+          %td
+            %b= ip_detail.isp
+        %tr
+          %td AS Name:
+          %td
+            %b= ip_detail.as_name
+        %tr
+          %td Organization:
+          %td
+            %b= ip_detail.organization
+        %tr
+          %td Hostname:
+          %td
+            %b= ip_detail.hostname
+

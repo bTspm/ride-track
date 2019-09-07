@@ -75,7 +75,7 @@ module Services
     end
 
     def _get_local_currency_from_ip(ip)
-      ip_storage.get_ip_details(ip).currency_code
+      ip_storage.get_ip_details(ip)&.address&.currency_code
     rescue Exceptions::AppExceptions::ApiError
       nil
     end

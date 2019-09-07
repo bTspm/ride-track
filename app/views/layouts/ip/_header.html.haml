@@ -1,0 +1,11 @@
+.navbar.navbar-dark.navbar-expand-lg.fixed-top.bg-white
+  .container
+    = link_to 'IP Details', ip_home_path, class: 'navbar-brand logo'
+    %button.navbar-toggler{"data-target" => "#navbarNav", "data-toggle" => "collapse"}
+      %span.sr-only Toggle navigation
+      %span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      %ul.nav.navbar-nav.ml-auto
+        %li.nav-item{role: "presentation"}
+          = link_to 'Speed Test', ip_speed_test_path, class: 'nav-link active'
+

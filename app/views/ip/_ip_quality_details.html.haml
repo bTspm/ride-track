@@ -1,0 +1,15 @@
+.card
+  .card-header= fontawesome_icon('far fa-check-circle', 'IP Quality Details')
+  .card-body
+    .row
+      = quality_detail_format quality_detail.bot_details
+      = quality_detail_format quality_detail.crawler_details
+    .row
+      = fraud_score_format quality_detail.fraud_score_details
+      = quality_detail_format quality_detail.mobile_details
+    .row
+      = quality_detail_format quality_detail.proxy_details
+      = quality_detail_format quality_detail.abuse_details
+    .row
+      = quality_detail_format quality_detail.tor_details
+      = quality_detail_format quality_detail.vpn_details

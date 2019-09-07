@@ -10,17 +10,21 @@ module Domains
                 :state_name,
                 :country_code,
                 :country_name,
+                :currency_code,
+                :time_zone,
                 :zip_code
 
     def initialize(details:)
-      @latitude     = details[:latitude]
-      @longitude    = details[:longitude]
-      @city         = details[:city]
-      @state_code   = details[:state_code]
-      @state_name   = details[:state_name]
+      @latitude = details[:latitude]
+      @longitude = details[:longitude]
+      @city = details[:city]
+      @state_code = details[:state_code]
+      @state_name = details[:state_name]
       @country_code = details[:country_code]
       @country_name = details[:country_name]
-      @zip_code     = details[:zip_code]
+      @currency_code = details[:currency_code]
+      @time_zone = details[:time_zone]
+      @zip_code = details[:zip_code]
     end
 
     def is_us?

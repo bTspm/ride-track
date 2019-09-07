@@ -1,0 +1,49 @@
+.container
+  .section
+    .card
+      .card-header= fontawesome_icon('fas fa-globe-europe', 'Geo Information')
+      .card-body
+        .row
+          .col-md-4
+            %table.table.table-responsive.table-hover
+              %tbody
+                %tr
+                  %td Coordinates:
+                  %td
+                    %b= address.coordinates
+                %tr
+                  %td Location:
+                  %td
+                    %b= address.location
+
+                %tr
+                  %td Region:
+                  %td
+                    %b= address.state_name
+                %tr
+                  %td Country:
+                  %td
+                    %b
+                      %spam= address.country_name
+                      %spam{class: "flag-icon flag-icon-#{address.country_code.try(:downcase)}"}
+                %tr
+                  %td Currency:
+                  %td
+                    %b
+                      %spam= address.currency_code
+                      %spam{class: "currency-flag currency-flag-#{address.currency_code.try(:downcase)}"}
+                %tr
+                  %td Timezone:
+                  %td
+                    %b= address.time_zone
+                %tr
+                  %td Local Time:
+                  %td
+                    %b= address.local_time
+
+
+          .col-md-8
+            #ip-location-map-container
+
+:javascript
+  MapService.location(JSON.parse('#{raw(address.map_location_params)}'))

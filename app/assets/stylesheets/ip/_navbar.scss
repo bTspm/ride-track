@@ -1,0 +1,52 @@
+.navbar {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .1);
+  background: linear-gradient(120deg, #7f70f5, #0ea0ff);
+  color: #fff;
+  margin-bottom: 8rem
+}
+
+.navbar-nav .nav-link {
+  font-weight: 700
+}
+
+.navbar-nav .nav-item {
+  padding-right: 2rem
+}
+
+.navbar-nav:last-child .item:last-child, .navbar-nav:last-child .item:last-child a {
+  padding-right: 0
+}
+
+.logo {
+  font-size: 1.5rem
+}
+
+.fixed-top + .page {
+  padding-top: 62px
+}
+
+@media (min-width: 576px) {
+  .navbar {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem
+  }
+
+  .fixed-top + .page {
+    padding-top: 5.5rem
+  }
+}
+
+.gradient a:hover {
+  opacity: .75 !important
+}
+
+.fixed-top {
+  top: 0
+}
+
+.fixed-bottom, .fixed-top {
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030
+}

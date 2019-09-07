@@ -1,0 +1,13 @@
+- ip_input = local_assigns.fetch :ip_input, nil
+.container
+  .row
+    .col-md-2
+    .col-md-8
+      = form_tag ip_ip_search_path, method: :get, enforce_utf8: false do
+        .input-group.mb-4.border.rounded-pill.p-1
+          = text_field_tag(:ip_input, ip_input, {placeholder: 'IP Address or Domain Name Ex: google.com or 8.8.8.8',
+                                   class: 'form-control form-control bg-none border-0'})
+          .input-group-append.border-0
+            = button_tag(name: nil, type: 'submit', class: 'btn btn-primary') do
+              = fontawesome_icon('fas fa-search', 'Search')
+    .col-md-2
