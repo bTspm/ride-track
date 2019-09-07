@@ -37,7 +37,7 @@ module RideTrack
     config.autoload_paths << "#{Rails.root}/spec"
 
     #Enabling compressions.
-    config.middleware.insert_after ActionDispatch::Static
+    # config.middleware.insert_after ActionDispatch::Static
     config.middleware.use Rack::Deflater
   end
 end
