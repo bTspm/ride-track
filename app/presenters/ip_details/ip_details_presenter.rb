@@ -6,13 +6,6 @@ module Presenters::IpDetails
       def address
         @address_presenter ||= ::Presenters::AddressesPresenter.present(data_object.address, h)
       end
-
-      def mobile_network
-        mobile ? 'Yes' : 'No'
-      end
-    end
-
-    class Enum < Btspm::Presenters::EnumPresenter
     end
   end
 end

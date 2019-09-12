@@ -10,8 +10,7 @@ module Presenters
 
       def local_time
         time = Time.now.in_time_zone(time_zone)
-        formatted_time = time.strftime("#{time.day.ordinalize} %b %y, %I:%M %p")
-        h.fontawesome_icon('far fa-clock fa-lg', formatted_time, {class: 'text-right'})
+        time.strftime("#{time.day.ordinalize} %b %y, %I:%M %p")
       end
 
       def location
@@ -30,7 +29,7 @@ module Presenters
       private
 
       def _map_coordinates
-        {lat: latitude, lng: longitude}
+        { lat: latitude, lng: longitude }
       end
 
       def _map_selector
@@ -40,9 +39,6 @@ module Presenters
       def _map_title
         "#{city}, #{state_code}, #{country_code}"
       end
-    end
-
-    class Enum < Btspm::Presenters::EnumPresenter
     end
   end
 end

@@ -10,6 +10,12 @@ describe Storage::Allocator do
     it { is_expected.to be_kind_of Storage::CurrencyStore }
   end
 
+  describe '#ip_quality_store' do
+    subject { allocator.ip_quality_store }
+
+    it { is_expected.to be_kind_of Storage::IpQualityStore }
+  end
+
   describe '#ip_store' do
     subject { allocator.ip_store }
 

@@ -15,12 +15,12 @@ module Services
       engine.currency_store
     end
 
-    def ip_storage
-      engine.ip_store
-    end
-
     def ip_quality_storage
       engine.ip_quality_store
+    end
+
+    def ip_storage
+      engine.ip_store
     end
 
     def lyft_storage

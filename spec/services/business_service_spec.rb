@@ -30,6 +30,16 @@ describe Services::BusinessService do
     end
   end
 
+  describe '#ip_quality_storage' do
+    subject { business_service.ip_quality_storage }
+
+    it 'should expect to call ip_quality_store on engine' do
+      expect(engine).to receive(:ip_quality_store) { 'Ip Quality Store' }
+
+      expect(subject).to eq 'Ip Quality Store'
+    end
+  end
+
   describe '#ip_storage' do
     subject { business_service.ip_storage }
 

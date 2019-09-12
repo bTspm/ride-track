@@ -14,7 +14,7 @@ describe Api::CacheTime do
     subject { dummy_class.calc_top_of_hour }
 
     it 'should return calculated remaining seconds on hours' do
-      expect(dummy_class).to receive(:_time_now) { time }
+      expect(Time).to receive(:now) { time }
 
       expect(subject).to eq 1_800
     end

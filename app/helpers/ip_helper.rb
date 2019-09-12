@@ -1,5 +1,10 @@
 module IpHelper
 
+  def fraud_score_format(options = {})
+    options[:value] = _fraud_score_format(options)
+    quality_detail_format(options)
+  end
+
   def quality_detail_format(options = {})
     left_border_class = options[:left_border_class].presence || 'info-left'
     content_tag :div, class: 'col-md quality-detail' do
@@ -14,11 +19,6 @@ module IpHelper
     end
   end
 
-  def fraud_score_format(options = {})
-    options[:value] = _fraud_score_format(options)
-    quality_detail_format(options)
-  end
-
   private
 
   def _fraud_score_format(options = {})
@@ -28,16 +28,16 @@ module IpHelper
     end
   end
 
+  def _quality_icon_format(options = {})
+    content_tag :div, class: 'col-auto text-right' do
+      fontawesome_icon("#{options[:icon]} #{options[:text_class]}")
+    end
+  end
+
   def _quality_text_format(options = {})
     content_tag :div, class: 'col' do
       concat(content_tag :h4, options[:label])
       concat(content_tag :small, options[:value], class: options[:value_text_class])
-    end
-  end
-
-  def _quality_icon_format(options = {})
-    content_tag :div, class: 'col-auto text-right' do
-      fontawesome_icon("#{options[:icon]} #{options[:text_class]}")
     end
   end
 

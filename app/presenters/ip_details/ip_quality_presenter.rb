@@ -49,12 +49,12 @@ module Presenters::IpDetails
 
       private
 
-      def _abuse_true_values
-        { value: 'Abuse detected', left_border_class: 'danger-left', text_class: 'text-danger' }
-      end
-
       def _abuse_false_values
         { value: 'No abuse detected', left_border_class: 'success-left', text_class: 'text-success' }
+      end
+
+      def _abuse_true_values
+        { value: 'Abuse detected', left_border_class: 'danger-left', text_class: 'text-danger' }
       end
 
       def _bot_false_values
@@ -82,7 +82,7 @@ module Presenters::IpDetails
           when 67..100
             _fraud_score_high_values
           else
-            "Unknown ##{fraud_score}"
+            { error: "Unknown #{fraud_score}" }
         end
       end
 
@@ -98,36 +98,36 @@ module Presenters::IpDetails
         { value_suffix: 'Suspicious', text_class: 'text-warning', left_border_class: 'warning-left' }
       end
 
-      def _mobile_true_values
-        { value: 'Connection detected', left_border_class: 'info-left', text_class: 'text-info' }
-      end
-
       def _mobile_false_values
         { value: 'Not mobile', left_border_class: 'info-left', text_class: 'text-info' }
       end
 
-      def _proxy_true_values
-        { value: 'Connection detected', left_border_class: 'danger-left', text_class: 'text-danger' }
+      def _mobile_true_values
+        { value: 'Connection detected', left_border_class: 'info-left', text_class: 'text-info' }
       end
 
       def _proxy_false_values
         { value: 'Not proxy', left_border_class: 'success-left', text_class: 'text-success' }
       end
 
-      def _tor_true_values
-        { value: 'TOR detected', left_border_class: 'danger-left', text_class: 'text-danger' }
+      def _proxy_true_values
+        { value: 'Connection detected', left_border_class: 'danger-left', text_class: 'text-danger' }
       end
 
       def _tor_false_values
         { value: 'Not TOR', left_border_class: 'success-left', text_class: 'text-success' }
       end
 
-      def _vpn_true_values
-        { value: 'VPN detected', left_border_class: 'danger-left', text_class: 'text-danger' }
+      def _tor_true_values
+        { value: 'TOR detected', left_border_class: 'danger-left', text_class: 'text-danger' }
       end
 
       def _vpn_false_values
         { value: 'Not VPN', left_border_class: 'success-left', text_class: 'text-success' }
+      end
+
+      def _vpn_true_values
+        { value: 'VPN detected', left_border_class: 'danger-left', text_class: 'text-danger' }
       end
     end
   end

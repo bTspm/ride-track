@@ -4,12 +4,12 @@ module Storage
       Storage::CurrencyStore.new
     end
 
-    def ip_store
-      Storage::IpStore.new
-    end
-
     def ip_quality_store
       Storage::IpQualityStore.new
+    end
+
+    def ip_store
+      Storage::IpStore.new
     end
 
     def lyft_store

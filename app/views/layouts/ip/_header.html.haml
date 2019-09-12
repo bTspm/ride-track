@@ -6,6 +6,8 @@
       %span.navbar-toggler-icon
     #navbarNav.collapse.navbar-collapse
       %ul.nav.navbar-nav.ml-auto
-        %li.nav-item{role: "presentation"}
+        %li.nav-item
+          = link_to 'Home', ip_home_path, class: 'nav-link active'
+        %li.nav-item
           = link_to 'Speed Test', ip_speed_test_path, class: 'nav-link active'
 
