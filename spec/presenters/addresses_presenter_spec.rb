@@ -34,7 +34,7 @@ describe Presenters::AddressesPresenter do
     end
 
     describe '#local_time' do
-      let(:time) { Time.new(2019) }
+      let(:time) { Time.new(2019).utc }
 
       subject { scalar.local_time }
       it 'should return local time' do
